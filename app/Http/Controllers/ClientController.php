@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\StoreClientRequest;
 
@@ -91,9 +93,19 @@ class ClientController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function edit(Client $client)
+    public function edit($id)
     {
-        $client = Client::find($client->id);
+    
+        $clientId = Crypt::decrypt($id);
+      
+        $client = Client::find($clientId);
+
+        //GUARD CLAUSE
+        if ($client->user_id !== auth()->user()->id) {
+            Session::flash('error', 'You are not authorized for this Action');
+            return redirect()->back();
+        }
+
 
         return view('layouts.dashboard.clients.edit', [
             'client' => $client
@@ -109,12 +121,15 @@ class ClientController extends Controller
      */
     public function update(StoreClientRequest $request, Client $client)
     {
-        //GUARD CLAUSE
 
         $client = Client::find($client->id);
 
-
-        $authenticatedUser = auth()->user();
+        // dd($client->user->id);
+        //GUARD CLAUSE
+        if ($client->user_id !== auth()->user()->id) {
+            Session::flash('error', 'You are not authorized for this Action');
+            return redirect()->back();
+        }
 
         $updateClient = $client->update([
             'name' => $request->name,
@@ -131,10 +146,10 @@ class ClientController extends Controller
             'diet_type' => $request->diet_type,
         ]);
 
-        if($updateClient){
+        if ($updateClient) {
             Session::flash('success', 'Client Updated');
             return redirect()->back();
-        }else{
+        } else {
             Session::flash('error', 'Something went wrong ');
             return redirect()->back();
         }
@@ -148,8 +163,19 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //GUARD CLAUSE
 
-        //
+        $client = Client::find($client->id);
+
+        //GUARD CLAUSE
+        if ($client->user_id !== auth()->user()->id) {
+            Session::flash('error', 'You are not authorized for this Action');
+            return redirect()->back();
+        }
+
+        $client->delete();
+
+        Session::flash('success', 'Client Deleted');
+        return redirect()->back();
+        
     }
 }

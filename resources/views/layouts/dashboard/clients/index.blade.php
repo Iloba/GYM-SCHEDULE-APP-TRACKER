@@ -45,10 +45,28 @@
                                         </td>
                                         <td>
                                             <div class="d-flex">
-                                                <a class="btn btn-info btn-sm text-white  m-2" href="{{ route('clients.edit', $client->id) }}"><i
+                                                @php
+                                                    $parameter = $client->id;
+
+                                                    $parameter = Crypt::encrypt($parameter);
+                                                @endphp
+                                                <a class="btn btn-info btn-sm text-white  m-2"
+                                                    href="{{ route('clients.edit', $parameter) }}"><i
                                                         class="fas fa-edit"></i></a>
-                                                <a class="btn btn-danger btn-sm text-white  m-2" href=""><i
+                                                <a class="btn btn-danger btn-sm text-white  m-2" onclick="
+                                                event.preventDefault();
+                                                if(confirm('Dangerous Action, Do you want to Continue??')){
+                                                     document.getElementById('{{ 'form-delete-'. $client->id }}').submit();
+                                                }
+                                
+                                                " href="{{ route('clients.destroy', $client->id) }}"><i
                                                         class="fas fa-trash"></i></a>
+
+                                                <form action="{{ route('clients.destroy', $client->id) }}" method="POST"
+                                                    class="d-none" id="{{ 'form-delete-'. $client->id }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
                                             </div>
 
                                         </td>
