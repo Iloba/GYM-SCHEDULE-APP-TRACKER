@@ -65,22 +65,25 @@ class ClientController extends Controller
             'diet_type' => $request->diet_type,
         ]);
 
-        if($storeClient){
+        if ($storeClient) {
             Session::flash('success', 'Client Created');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Something went wrong ');
             return redirect()->back();
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Client  $client
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Client $client)
-    {
-        //
-    }
+    // /**
+    //  * Display the specified resource.
+    //  *
+    //  * @param  \App\Models\Client  $client
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function show(Client $client)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -90,7 +93,11 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        $client = Client::find($client->id);
+
+        return view('layouts.dashboard.clients.edit', [
+            'client' => $client
+        ]);
     }
 
     /**
@@ -100,9 +107,37 @@ class ClientController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(StoreClientRequest $request, Client $client)
     {
-        //
+        //GUARD CLAUSE
+
+        $client = Client::find($client->id);
+
+
+        $authenticatedUser = auth()->user();
+
+        $updateClient = $client->update([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'age' => $request->age,
+            'gender' => $request->gender,
+            'weight' => $request->weight,
+            'height' => $request->height,
+            'weight_goal' => $request->weight_goal,
+            'workout_time' => $request->workout_time,
+            'workout_time_per_week' => $request->workout_time_per_week,
+            'workout_place' => $request->workout_place,
+            'diet_type' => $request->diet_type,
+        ]);
+
+        if($updateClient){
+            Session::flash('success', 'Client Updated');
+            return redirect()->back();
+        }else{
+            Session::flash('error', 'Something went wrong ');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -113,6 +148,8 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
+        //GUARD CLAUSE
+
         //
     }
 }

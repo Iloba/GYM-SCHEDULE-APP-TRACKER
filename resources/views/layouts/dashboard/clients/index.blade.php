@@ -38,14 +38,14 @@
                                         <td>{{ $client->age }}</td>
 
                                         <td>
-                                            <button type="button" class="btn btn-success btn-sm text-white"
+                                            <button type="button" class="btn btn-success btn-sm text-white m-2"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $client->id }}">
                                                 <i class="far fa-eye text-white"></i>
                                             </button>
                                         </td>
                                         <td>
                                             <div class="d-flex">
-                                                <a class="btn btn-info btn-sm text-white  m-2" href=""><i
+                                                <a class="btn btn-info btn-sm text-white  m-2" href="{{ route('clients.edit', $client->id) }}"><i
                                                         class="fas fa-edit"></i></a>
                                                 <a class="btn btn-danger btn-sm text-white  m-2" href=""><i
                                                         class="fas fa-trash"></i></a>
