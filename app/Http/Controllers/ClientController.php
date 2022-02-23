@@ -76,16 +76,16 @@ class ClientController extends Controller
         }
     }
 
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  \App\Models\Client  $client
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function show(Client $client)
-    // {
-    //     //
-    // }
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Client  $client
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Client $client)
+    {
+        //
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -95,9 +95,9 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-    
+
         $clientId = Crypt::decrypt($id);
-      
+
         $client = Client::find($clientId);
 
         //GUARD CLAUSE
@@ -176,6 +176,5 @@ class ClientController extends Controller
 
         Session::flash('success', 'Client Deleted');
         return redirect()->back();
-        
     }
 }
