@@ -15,6 +15,9 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
   <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 
+  
+
+
 </head>
 
 <body>
@@ -22,13 +25,35 @@
     @yield('body-of-dashboard')
   </main>
 
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+    integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script type="text/javascript">
     $(document).ready( function () {
-       $('#table').DataTable();
-      } );
+         $('#table').DataTable();
+        } );
   </script>
-  
+  {{-- toastr success --}}
+  @if (Session::has('success'))
+  <script>
+    toastr.success("{!! Session::get('success') !!}")
+  </script>
+  @endif
+
+  {{-- toastr error --}}
+  @if (Session::has('error'))
+  <script>
+    toastr.error("{!! Session::get('error') !!}")
+  </script>
+  @endif
+
 </body>
 
 </html>

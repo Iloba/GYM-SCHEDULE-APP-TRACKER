@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\StoreClientRequest;
 
 class ClientController extends Controller
@@ -65,7 +66,8 @@ class ClientController extends Controller
         ]);
 
         if($storeClient){
-            dd('Stored');
+            Session::flash('success', 'Client Created');
+            return redirect()->back();
         }
     }
 
