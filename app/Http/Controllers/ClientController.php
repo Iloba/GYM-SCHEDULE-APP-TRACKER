@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreClientRequest;
 
 class ClientController extends Controller
 {
@@ -20,7 +21,7 @@ class ClientController extends Controller
     public function index()
     {
         //
-        $clients = Client::where('user_id', auth()->user()->id)->paginate(20);
+        $clients = Client::where('user_id', auth()->user()->id)->latest()->paginate(20);
 
         return view('layouts.dashboard.clients.index', [
             'clients' => $clients
@@ -35,7 +36,7 @@ class ClientController extends Controller
     public function create()
     {
         //
-        dd('create');
+        return view('layouts.dashboard.clients.create');
     }
 
     /**
@@ -44,9 +45,28 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreClientRequest $request)
     {
-        //
+        $authenticatedUser = auth()->user();
+
+        $storeClient = $authenticatedUser->clients()->create([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'age' => $request->age,
+            'gender' => $request->gender,
+            'weight' => $request->weight,
+            'height' => $request->height,
+            'weight_goal' => $request->weight_goal,
+            'workout_time' => $request->workout_time,
+            'workout_time_per_week' => $request->workout_time_per_week,
+            'workout_place' => $request->workout_place,
+            'diet_type' => $request->diet_type,
+        ]);
+
+        if($storeClient){
+            dd('Stored');
+        }
     }
 
     /**

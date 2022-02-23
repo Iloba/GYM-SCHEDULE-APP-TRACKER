@@ -1,11 +1,13 @@
 @extends('layouts.dashboard.header')
 @section('body-of-dashboard')
+
 <head>
 	<!-- FontAwesome JS-->
 	<script defer src="{{ asset('js/all.min.js') }}"></script>
 
 	<!-- App CSS -->
 	<link id="theme-style" rel="stylesheet" href="{{ asset('css/portal.css') }}">
+	@yield('css')
 </head>
 
 <body class="app">
@@ -67,7 +69,7 @@
 												<div class="col-auto">
 													<img class="profile-image" src="{{ asset('img/profile-2.png') }}"
 														alt="">
-														
+
 												</div>
 												<!--//col-->
 												<div class="col">
@@ -113,18 +115,18 @@
 									role="button" aria-expanded="false"><img src="{{ asset('img/profile-2.png') }}"
 										alt="user profile"></a>
 								<ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
-									<li><a class="dropdown-item" href="">Account:  {{ Auth::user()->name }}</a></li>
+									<li><a class="dropdown-item" href="">Account: {{ Auth::user()->name }}</a></li>
 									<li><a class="dropdown-item" href="">Settings</a></li>
 									<li>
 										<hr class="dropdown-divider">
 									</li>
 									<li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
 										document.getElementById('logout-form').submit();">
-						   				Logout</a></li>
+											Logout</a></li>
 
 									<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+										@csrf
+									</form>
 								</ul>
 							</div>
 							<!--//app-user-dropdown-->
@@ -143,8 +145,8 @@
 			<div class="sidepanel-inner d-flex flex-column">
 				<a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
 				<div class="app-branding">
-					<a class="app-logo" href=""><img class="logo-icon me-2"
-							src="{{ asset('img/portal-logo.svg') }}" alt="logo"><span class="logo-text">FITNESS
+					<a class="app-logo" href=""><img class="logo-icon me-2" src="{{ asset('img/portal-logo.svg') }}"
+							alt="logo"><span class="logo-text">FITNESS
 							APP</span></a>
 
 				</div>
@@ -227,8 +229,7 @@
 							<!--//nav-link-->
 							<div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
 								<ul class="submenu-list list-unstyled">
-									<li class="submenu-item"><a class="submenu-link"
-											href="">Notifications</a></li>
+									<li class="submenu-item"><a class="submenu-link" href="">Notifications</a></li>
 									<li class="submenu-item"><a class="submenu-link" href="">Account</a>
 									</li>
 									<li class="submenu-item"><a class="submenu-link" href="">Settings</a>
@@ -285,7 +286,7 @@
 								<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
 								<a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
 								document.getElementById('logout-form').submit();">
-				 
+
 									<span class="nav-icon">
 										<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear"
 											fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -297,8 +298,8 @@
 									</span>
 									<span class="nav-link-text">Logout</span>
 									<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+										@csrf
+									</form>
 								</a>
 								<!--//nav-link-->
 							</li>
@@ -321,23 +322,22 @@
 	</div>
 	<!--//app-wrapper-->
 	<footer class="app-footer">
-        <div class="container text-center py-3">
-            <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
-            <small class="copyright">Designed with <i class="fas fa-heart" style="color: #fb866a;"></i> by <a
-                    class="" href="https://rooah.xyz" target="_blank">Rooah!</a></small>
+		<div class="container text-center py-3">
+			<!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
+			<small class="copyright">Designed with <i class="fas fa-heart" style="color: #fb866a;"></i> by <a class=""
+					href="https://rooah.xyz" target="_blank">Rooah!</a></small>
 
-        </div>
-    </footer>
+		</div>
+	</footer>
 
 	<!-- Javascript -->
-	{{-- <script src="assets/plugins/popper.min.js"></script> --}}
 	<script src="{{ asset('js/plugins/popper.min.js') }}"></script>
-	{{-- <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> --}}
 	<script src="{{ asset('js/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
 
 
 	<!-- Page Specific JS -->
 	<script src="{{ asset('js/dashboard.js') }}"></script>
+	@stack('scripts')
 </body>
 
 @endsection
