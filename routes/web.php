@@ -24,3 +24,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('clients', ClientController::class);
+
+Route::view('/home/schedule', 'layouts.dashboard.schedules.index')->name('schedule');

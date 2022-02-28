@@ -38,7 +38,7 @@
                                         <td>{{ $client->age }}</td>
 
                                         <td>
-                                            <button type="button" class="btn btn-success btn-sm text-white m-2"
+                                            <button type="button" class="btn btn-secondary btn-sm text-white m-2"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $client->id }}">
                                                 <i class="far fa-eye text-white"></i>
                                             </button>

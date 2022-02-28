@@ -106,7 +106,6 @@ class ClientController extends Controller
             return redirect()->back();
         }
 
-
         return view('layouts.dashboard.clients.edit', [
             'client' => $client
         ]);

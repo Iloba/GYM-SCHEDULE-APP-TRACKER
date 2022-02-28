@@ -188,7 +188,7 @@
 						<!--//nav-item-->
 						<li class="nav-item">
 							<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-							<a class="nav-link" href="">
+							<a class="nav-link" href="{{ route('schedule') }}">
 								<span class="nav-icon">
 									<i class="fas fa-running"></i>
 								</span>
