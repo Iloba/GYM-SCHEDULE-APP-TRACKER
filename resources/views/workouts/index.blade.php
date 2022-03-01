@@ -18,17 +18,20 @@
                                         <div class="card col-md-3 mb-3 m-2 pt-2">
                                             <a class="nav-link" href="{{ route('workouts.show', $workout->id) }}">
                                                 <p class="text-center "><span class="btn btn-info"><i class=" fas fa-running "></i></span></p>
-                                            <h3 class="text-center">{{ $workout->workout_name }}</h4>
+                                                <h3 class="text-center">{{ $workout->workout_name }}</h4>
+                                                    <p class="text-center "><i>Type: {{ $workout->workout_type }}</i></p>
                                                 <p class="text-center">{{ $workout->description }}</p>
-                                                <p class="text-center">{{ $workout->workout_type }}</p>
+                                                
                                             </a>
                                         </div>
                                 @empty
                                         <p>No Workouts Please add</p>
                                 @endforelse
                                 </div>
-                    </div>
+                             </div>
+                   <div class="d-flex justify-content-center">
                     {{ $workouts->links() }}
+                   </div>
                 </div>
             </div>
         </div>

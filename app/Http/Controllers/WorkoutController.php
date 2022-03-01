@@ -17,7 +17,7 @@ class WorkoutController extends Controller
      */
     public function index()
     {
-        $workouts = Workout::where('user_id', auth()->user()->id)->latest()->paginate(10);
+        $workouts = Workout::where('user_id', auth()->user()->id)->latest()->paginate(9);
         return view('workouts.index', [
             'workouts' => $workouts
         ]);

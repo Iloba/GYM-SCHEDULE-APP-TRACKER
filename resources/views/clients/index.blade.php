@@ -106,11 +106,10 @@
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
-
-
-                    {{ $clients->links() }}
+                    <div class=" d-flex justify-content-center">
+                        {{ $clients->links() }}
+                    </div>
 
                 </div>
 
