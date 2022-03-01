@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\WorkoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +26,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('clients', ClientController::class);
+Route::resource('schedules', ScheduleController::class);
+Route::resource('workouts', WorkoutController::class);
 
-Route::view('/home/schedule', 'layouts.dashboard.schedules.index')->name('schedule');
+

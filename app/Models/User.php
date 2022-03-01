@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Client;
+use App\Models\Workout;
+use App\Models\Schedule;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -46,5 +48,13 @@ class User extends Authenticatable
 
     public function clients(){
         return $this->hasMany(Client::class);
+    }
+
+    public function workouts(){
+        return $this->hasMany(Workout::class);
+    }
+
+    public function schedules(){
+        return $this->hasMany(Schedule::class);
     }
 }

@@ -26,7 +26,7 @@ class ClientController extends Controller
         //
         $clients = Client::where('user_id', auth()->user()->id)->latest()->paginate(20);
 
-        return view('layouts.dashboard.clients.index', [
+        return view('clients.index', [
             'clients' => $clients
         ]);
     }
@@ -39,7 +39,7 @@ class ClientController extends Controller
     public function create()
     {
         //
-        return view('layouts.dashboard.clients.create');
+        return view('clients.create');
     }
 
     /**
@@ -106,7 +106,7 @@ class ClientController extends Controller
             return redirect()->back();
         }
 
-        return view('layouts.dashboard.clients.edit', [
+        return view('clients.edit', [
             'client' => $client
         ]);
     }

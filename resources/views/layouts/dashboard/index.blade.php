@@ -188,88 +188,24 @@
 						<!--//nav-item-->
 						<li class="nav-item">
 							<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-							<a class="nav-link" href="{{ route('schedule') }}">
+							<a class="nav-link" href="{{ route('schedules.index') }}">
 								<span class="nav-icon">
-									<i class="fas fa-running"></i>
+									<i class="fas fa-calendar"></i>
 								</span>
 								<span class="nav-link-text">Schedule Workouts</span>
 							</a>
 							<!--//nav-link-->
 						</li>
-						<!--//nav-item-->
-						{{-- <li class="nav-item has-submenu">
+						<li class="nav-item">
 							<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-							<a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse"
-								data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
+							<a class="nav-link" href="{{ route('workouts.index') }}">
 								<span class="nav-icon">
-									<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-									<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files"
-										fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-										<path fill-rule="evenodd"
-											d="M4 2h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4z" />
-										<path
-											d="M6 0h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1H4a2 2 0 0 1 2-2z" />
-									</svg>
+									<i class="fas fa-running"></i>
 								</span>
-								<span class="nav-link-text">Pages</span>
-								<span class="submenu-arrow">
-									<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
-										fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-										<path fill-rule="evenodd"
-											d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-									</svg>
-								</span>
-								<!--//submenu-arrow-->
+								<span class="nav-link-text">Workouts</span>
 							</a>
 							<!--//nav-link-->
-							<div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
-								<ul class="submenu-list list-unstyled">
-									<li class="submenu-item"><a class="submenu-link" href="">Notifications</a></li>
-									<li class="submenu-item"><a class="submenu-link" href="">Account</a>
-									</li>
-									<li class="submenu-item"><a class="submenu-link" href="">Settings</a>
-									</li>
-								</ul>
-							</div>
-						</li> --}}
-						<!--//nav-item-->
-						{{-- <li class="nav-item has-submenu">
-							<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-							<a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse"
-								data-bs-target="#submenu-2" aria-expanded="false" aria-controls="submenu-2">
-								<span class="nav-icon">
-									<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-									<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-columns-gap"
-										fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-										<path fill-rule="evenodd"
-											d="M6 1H1v3h5V1zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm14 12h-5v3h5v-3zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5zM6 8H1v7h5V8zM1 7a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H1zm14-6h-5v7h5V1zm-5-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1h-5z" />
-									</svg>
-								</span>
-								<span class="nav-link-text">External</span>
-								<span class="submenu-arrow">
-									<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
-										fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-										<path fill-rule="evenodd"
-											d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-									</svg>
-								</span>
-								<!--//submenu-arrow-->
-							</a>
-							<!--//nav-link-->
-							<div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
-								<ul class="submenu-list list-unstyled">
-									<li class="submenu-item"><a class="submenu-link" href="">Login</a></li>
-									<li class="submenu-item"><a class="submenu-link" href="">Signup</a></li>
-									<li class="submenu-item"><a class="submenu-link" href="">Reset
-											password</a></li>
-									<li class="submenu-item"><a class="submenu-link" href="">404 page</a></li>
-								</ul>
-							</div>
-						</li> --}}
-						<!--//nav-item-->
-
-
-
+						</li>
 					</ul>
 					<!--//app-menu-->
 				</nav>
@@ -314,6 +250,9 @@
 	<!--//app-header-->
 	<div class="m-2 p-2">
 		@yield('content')
+		<div id="calendar">
+
+		</div>
 	</div>
 	<!--//app-wrapper-->
 	<footer class="app-footer">
@@ -324,15 +263,16 @@
 
 		</div>
 	</footer>
-
+	
 	<!-- Javascript -->
+	@stack('scripts')
 	<script src="{{ asset('js/plugins/popper.min.js') }}"></script>
 	<script src="{{ asset('js/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
 
 
 	<!-- Page Specific JS -->
 	<script src="{{ asset('js/dashboard.js') }}"></script>
-	@stack('scripts')
+	
 </body>
 
 @endsection
