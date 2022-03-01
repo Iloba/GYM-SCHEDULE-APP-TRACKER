@@ -7,7 +7,7 @@
                     class="fas fa-arrow-left"></i></a>
             <h3>Add Workout</h3>
             <div class="card shadow-sm p-3">
-                <form action="{{ route('workouts.store') }}" method="POST">
+                <form action="{{ route('workouts.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row p-3">
                         <div class="col-md-6">
@@ -34,7 +34,7 @@
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="form-group mb-3">
+                            <div class="form-group mb-1">
                                 <label for="Youtube Link"><b>Youtube Link</b></label>
                                 <input type="text" name="youtube_link" class="form-control" placeholder="Enter Link to video">
                                 @error('youtube_link')
@@ -43,11 +43,11 @@
                             </div>
                         </div>
                         <div class="form-group mb-3" >
-                            <label for="Youtube Link"><b>Add Image</b></label>
+                            <label for="Youtube Link"><b>Add Image <span class="text-danger">You can Upload Multiple Images</span></b></label>
                             <div id="img-form-box">
-                                <input type="file" name="workout_image" class="form-control"> <br>
+                                <input type="file" name="workout_image[]" multiple class="form-control"> <br>
                             </div>
-                            <span class="btn btn-info text-white" id="add-img-button">Add Image</span>
+                            {{-- <span class="btn btn-info text-white" id="add-img-button">Add Image</span> --}}
                             @error('image')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror <br>
@@ -67,7 +67,7 @@
     <!--//app-footer-->
 
 </div>
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     const AddImageButton = document.querySelector('#add-img-button');
     const ImgDiv = document.querySelector('#img-form-box');
 
@@ -85,6 +85,6 @@
 
 
     })
-</script>
+</script> --}}
 @endsection
 

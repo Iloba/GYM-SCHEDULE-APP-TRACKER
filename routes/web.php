@@ -25,8 +25,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('clients', ClientController::class);
-Route::resource('schedules', ScheduleController::class);
-Route::resource('workouts', WorkoutController::class);
+Route::resource('clients', ClientController::class)->middleware('auth');
+Route::resource('schedules', ScheduleController::class)->middleware('auth');
+Route::resource('workouts', WorkoutController::class)->middleware('auth');
 
 
