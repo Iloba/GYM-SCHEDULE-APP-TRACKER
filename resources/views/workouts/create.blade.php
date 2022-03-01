@@ -20,7 +20,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="Workout Description"><b>Workout Description</b></label>
-                               <textarea name="workout_description" class="form-control" id="" cols="30" rows="10"></textarea>
+                               <textarea name="workout_description" style="overflow:hidden" style="resize: none" class="form-control"  cols="30" rows="20"></textarea>
                                 @error('workout_description')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror

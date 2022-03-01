@@ -1,6 +1,7 @@
 @extends('layouts.dashboard.index')
 @section('css')
 <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 @endsection
 @section('content')
 <div class="app-wrapper">
@@ -13,8 +14,8 @@
                         <a href="{{ route('clients.create') }}" class="btn btn-info btn-sm text-white mb-4 "><i
                                 class="fas fa-plus"></i> Add Clients</a>
 
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover table-sm" id="table">
+                        <div class="table-responsive" >
+                            <table class="table table-striped table-hover table-sm "  id="table">
                                 <thead class="bg-info text-white ">
                                     <tr>
                                         <th>S/NO</th>

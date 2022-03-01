@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Workout;
 use App\Models\WorkoutMedia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class WorkoutController extends Controller
@@ -39,49 +40,49 @@ class WorkoutController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'workout_name' => 'required',
-        //     'workout_image' => 'required',
-        //     'workout_description' => 'required',
-        //     'youtube_link' => 'required',
-        //     'workout_image' => 'required'
-        // ]);
 
+        // dd($request->all());
+        $request->validate([
+            'workout_name' => 'required',
+            'workout_type' => 'required',
+            'workout_image' => 'required',
+            'workout_description' => 'required',
+            'youtube_link' => 'required',
+            'workout_image' => 'required'
+        ]);
        
+
         $workout = new Workout;
         $workout->user_id = auth()->user()->id;
-        $workout->workout_name =$request->workout_name;
-        $workout->workout_type =$request->workout_type;
-        $workout->description =$request->workout_description;
-        $workout->youtube_link =$request->youtube_link;
+        $workout->workout_name = $request->workout_name;
+        $workout->workout_type = $request->workout_type;
+        $workout->description = $request->workout_description;
+        $workout->youtube_link = $request->youtube_link;
 
-         //Handle Images
-         $images = $request->file('workout_image');
-         
-         foreach ($images as $image ) {
-             
+        $workout->save();
+        //Handle Images
+        $images = $request->file('workout_image');
+
+        foreach ($images as $image) {
+
             //Get Name
-            $imageName = time().$image->getClientOriginalName();
-           
+            $imageName = time() . $image->getClientOriginalName();
+
             //Save with Filename
             Storage::put($imageName, file_get_contents($image));
 
             //Move file to location
-            Storage::move( $imageName, 'public/workout_images/'. $imageName);
-        
-           
+            Storage::move($imageName, 'public/workout_images/' . $imageName);
+
             $workoutImage = new WorkoutMedia;
-            $workoutImage->workout_id = $request->id;
+            $workoutImage->workout_id = $workout->id;
             $workoutImage->media_type = 'image';
             $workoutImage->image_url =  $imageName;
-        
+            $workoutImage->save();
+        }
 
-         }
-
-        
-
-      
-
+        Session::flash('success', 'Workout Created');
+        return redirect()->back();
     }
 
 
