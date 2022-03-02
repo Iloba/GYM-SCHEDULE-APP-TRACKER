@@ -42,18 +42,7 @@
     integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w=="
     crossorigin="anonymous"></script>
 
-  <script type="text/javascript">
-    $(document).ready( function () {
-         $('#table').DataTable();
-        } );
-  </script>
-  <script type="text/javascript">
-    $(document).ready(function(){
-        $('#calendar').fullCalendar({
-            
-        });
-    });
-</script>
+  
 
 
 <script type="text/javascript">
