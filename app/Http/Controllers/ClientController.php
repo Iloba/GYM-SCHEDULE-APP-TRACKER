@@ -21,7 +21,7 @@ class ClientController extends Controller
     public function index()
     {
         //
-        $clients = Client::where('user_id', auth()->user()->id)->latest()->paginate(20);
+        $clients = Client::where('user_id', auth()->user()->id)->latest()->paginate(25);
 
         return view('clients.index', [
             'clients' => $clients

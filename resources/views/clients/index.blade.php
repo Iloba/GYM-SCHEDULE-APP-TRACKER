@@ -101,7 +101,7 @@
                                         </div>
                                     </div>
                                     @empty
-                                         <p>No Clients, Please Add</p>
+                                         <p class="text-center">No Clients, Please Add</p>
                                     @endforelse
                                 </tbody>
                             </table>

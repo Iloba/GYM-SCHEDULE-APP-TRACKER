@@ -283,6 +283,7 @@
 		integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w=="
 		crossorigin="anonymous"></script>
 	@stack('scripts')
+	@stack('scripts1')
 
 
 	<script src="{{ asset('js/dashboard.js') }}"></script>
@@ -294,7 +295,7 @@
 
 
 	<!-- Page Specific JS -->
-
+	
 
 </body>
 

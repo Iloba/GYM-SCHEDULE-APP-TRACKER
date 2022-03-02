@@ -1,23 +1,23 @@
 @extends('layouts.dashboard.index')
 @section('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
-integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw=="
-crossorigin="anonymous" />
+    integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw=="
+    crossorigin="anonymous" />
 <style>
-  .iframe{
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%;
-  height: 0;
-}
-.iframe iframe{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
+    .iframe {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%;
+        height: 0;
+    }
 
+    .iframe iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
 </style>
 @endsection
 @section('content')
@@ -34,7 +34,7 @@ crossorigin="anonymous" />
                         <div class="row  p-3 justify-content-center mb-2">
                             <div class="col-md-5 m-2 border border-1 mb-3  shadow-sm p-2">
                                 <h5 class="text-center mb-5 m-1">About Workout</h5>
-                                
+
                                 <h4 class="text-center">{{ $workout->workout_name }}</h4>
                                 <p class="text-center "><i>Type: {{ $workout->workout_type }}</i> <br> <span>{{
                                         $workout->description }}</span>
@@ -44,10 +44,13 @@ crossorigin="anonymous" />
                                 <h5 class="text-center mb-5 ">Video</h5>
                                 @if ($workout->youtube_link)
                                 <div class="iframe">
-                                    <iframe width="390" height="215" src="{{ $workout->youtube_link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <iframe width="390" height="215" src="{{ $workout->youtube_link }}"
+                                        title="YouTube video player" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
                                 </div>
                                 @else
-                                    <p>No YOutube Video</p>
+                                <p>No YOutube Video</p>
                                 @endif
                             </div>
                         </div>
@@ -55,7 +58,8 @@ crossorigin="anonymous" />
                             <h5 class="text-center mb-5 ">Images</h5>
                             @forelse ($images as $image)
                             <div class="col-md-3 gallerys mb-3">
-                                <a target="_blank" href="{{ asset('storage/workout_images/'.$image->image_url) }}"><img class="img-fluid border border-1 p-2"
+                                <a target="_blank" href="{{ asset('storage/workout_images/'.$image->image_url) }}"><img
+                                        class="img-fluid border border-1 p-2"
                                         src="{{ asset('storage/workout_images/'.$image->image_url) }}"></a>
                             </div>
                             @empty
@@ -71,17 +75,3 @@ crossorigin="anonymous" />
 </div>
 @endsection
 
-@push('scripts')
-
-<script type="text/javascript">
-    $(document).ready(function(){
-    $('.gallerys').magnificPopup({
-        type:'image',
-        delegate: 'a',
-        gallery : {
-            enabled: true
-        } 
-    });
-});
-</script>
-@endpush

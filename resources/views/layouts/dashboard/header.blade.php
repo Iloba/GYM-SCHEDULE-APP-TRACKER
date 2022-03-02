@@ -28,20 +28,50 @@
   </main>
 
 
-
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
     integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"
+    integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w=="
+    crossorigin="anonymous"></script>
+
   <script type="text/javascript">
     $(document).ready( function () {
          $('#table').DataTable();
         } );
   </script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#calendar').fullCalendar({
+            
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+    $('.gallerys').magnificPopup({
+        type:'image',
+        delegate: 'a',
+        gallery : {
+            enabled: true
+        } 
+    });
+});
+</script> 
+
+
+
+
+
   {{-- toastr success --}}
   @if (Session::has('success'))
   <script>

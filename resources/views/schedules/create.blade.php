@@ -7,7 +7,7 @@
                     class="fas fa-arrow-left"></i></a>
             <h3>Add Workout</h3>
             <div class="card shadow-sm p-3">
-                <form action="{{ route('clients.store') }}" method="POST">
+                <form action="{{ route('schedules.store') }}" method="POST">
                     @csrf
                     <div class="row p-3">
                         <div class="col-md-6">

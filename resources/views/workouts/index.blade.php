@@ -9,7 +9,7 @@
         <div class="container-xl">
             <h3>All Clients</h3>
             <div class="card shadow-sm p-3">
-                <div class="row justify-content-center mx-auto">
+                <div class="row justify-content-center">
                     <div class="col-md-12">
                         <a href="{{ route('workouts.create') }}" class="btn btn-info btn-sm text-white mb-4 "><i
                                 class="fas fa-plus"></i> Add Workouts</a>

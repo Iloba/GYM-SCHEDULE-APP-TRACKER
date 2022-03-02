@@ -15,6 +15,11 @@ class CreateSchedulesTable extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('client');
+            $table->string('workout');
+            $table->string('date');
+            $table->string('time');
             $table->timestamps();
         });
     }

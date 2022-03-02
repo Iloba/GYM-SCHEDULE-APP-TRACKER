@@ -19,7 +19,7 @@ class ClientSeeder extends Seeder
         //Insert 100 records into the db
         for($i=0; $i<20; $i++){
             $clients[] = [
-                'user_id' => 2,
+                'user_id' => 1,
                 'name' => Str::random(10),
                 'phone' => Str::random(10),
                 'email' => Str::random(10).'@gmail.com',
