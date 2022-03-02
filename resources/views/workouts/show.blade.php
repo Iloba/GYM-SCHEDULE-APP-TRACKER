@@ -31,20 +31,20 @@ crossorigin="anonymous" />
                         <a href="{{ route('workouts.create') }}" class="btn btn-info btn-sm text-white mb-4 "><i
                                 class="fas fa-plus"></i> Add Workouts</a>
                         <h3 class="text-center mb-5">{{ $workout->workout_name }}</h3>
-                        <div class="row justify-content-center mb-2">
-                            <div class="col-md-5 mb-3  shadow-sm">
-                                <h5 class="text-center mb-5 ">About Workout</h5>
+                        <div class="row  p-3 justify-content-center mb-2">
+                            <div class="col-md-5 m-2 border border-1 mb-3  shadow-sm p-2">
+                                <h5 class="text-center mb-5 m-1">About Workout</h5>
                                 
                                 <h4 class="text-center">{{ $workout->workout_name }}</h4>
                                 <p class="text-center "><i>Type: {{ $workout->workout_type }}</i> <br> <span>{{
                                         $workout->description }}</span>
                                 </p>
                             </div>
-                            <div class="col-md-5  shadow-sm">
-                                <h5 class="text-center mb-5 ">Youtube</h5>
+                            <div class="col-md-5 m-2 border border-1  shadow-sm p-2">
+                                <h5 class="text-center mb-5 ">Video</h5>
                                 @if ($workout->youtube_link)
                                 <div class="iframe">
-                                    <iframe width="390" height="215" src="https://www.youtube.com/embed/2N0VypfgHoY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <iframe width="390" height="215" src="{{ $workout->youtube_link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </div>
                                 @else
                                     <p>No YOutube Video</p>
@@ -54,7 +54,7 @@ crossorigin="anonymous" />
                         <div class="row  p-3 shadow-sm justify-content-center">
                             <h5 class="text-center mb-5 ">Images</h5>
                             @forelse ($images as $image)
-                            <div class="col-md-3 gallerys">
+                            <div class="col-md-3 gallerys mb-3">
                                 <a target="_blank" href="{{ asset('storage/workout_images/'.$image->image_url) }}"><img class="img-fluid border border-1 p-2"
                                         src="{{ asset('storage/workout_images/'.$image->image_url) }}"></a>
                             </div>
