@@ -13,15 +13,16 @@
                     <div class="col-md-12">
                         <a href="{{ route('workouts.create') }}" class="btn btn-info btn-sm text-white mb-4 "><i
                                 class="fas fa-plus"></i> Add Workouts</a>
-                                <div class="row mb-3 p-2 justify-content-center">
+                                <div class="row mb-3 p-2 justify-content-center ">
                                 @forelse ($workouts as $workout)
-                                        <div class="card col-md-3 mb-3 m-2 pt-2">
-                                            <a class="nav-link" href="{{ route('workouts.show', $workout->id) }}">
-                                                <p class="text-center "><span class="btn btn-info"><i class=" fas fa-running "></i></span></p>
-                                                <h3 class="text-center">{{ $workout->workout_name }}</h4>
-                                                    <p class="text-center "><i>Type: {{ $workout->workout_type }}</i></p>
-                                                <p class="text-center">{{ $workout->description }}</p>
-                                                
+                                        <div class="card col-md-3 mb-3 m-2 pt-2 bg-light shadow-sm">
+                                            @php
+                                                $parameter = Crypt::encrypt($workout->id);
+                                            @endphp
+                                            <a class="nav-link text-secondary" href="{{ route('workouts.show',  $parameter) }}">
+                                                <p class="text-center "><span class="btn btn-success"><i class=" fas fa-running "></i></span></p>
+                                                <h4 class="text-center">{{ $workout->workout_name }}</h4>
+                                                <p class="text-center "><i>Type: {{ $workout->workout_type }}</i> <br> See more....</p>   
                                             </a>
                                         </div>
                                 @empty
@@ -29,12 +30,12 @@
                                 @endforelse
                                 </div>
                              </div>
-                   <div class="d-flex justify-content-center">
-                    {{ $workouts->links() }}
-                   </div>
+                            <div class="d-flex justify-content-center">
+                                {{ $workouts->links() }}
+                            </div>
+                         </div>
+                     </div>
                 </div>
-            </div>
-        </div>
 
     </div>
 

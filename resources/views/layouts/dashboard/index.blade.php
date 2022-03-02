@@ -6,11 +6,20 @@
 	<script defer src="{{ asset('js/all.min.js') }}"></script>
 
 	<!-- App CSS -->
-	<link  rel="stylesheet" href="{{ asset('css/portal.css') }}">
-
+	<link rel="stylesheet" href="{{ asset('css/portal.css') }}">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap"
+	rel="stylesheet">	
+	<style rel="stylesheet">
+		*{
+			font-family: 'Poppins', sans-serif;
+		}
+	</style>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
-    integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+		integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 	@yield('css')
 </head>
 
@@ -263,7 +272,7 @@
 
 		</div>
 	</footer>
-	
+
 	<!-- Javascript -->
 	@stack('scripts')
 	<script src="{{ asset('js/plugins/popper.min.js') }}"></script>
@@ -272,7 +281,7 @@
 
 	<!-- Page Specific JS -->
 	<script src="{{ asset('js/dashboard.js') }}"></script>
-	
+
 </body>
 
 @endsection

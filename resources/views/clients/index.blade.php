@@ -15,7 +15,7 @@
                                 class="fas fa-plus"></i> Add Clients</a>
 
                         <div class="table-responsive" >
-                            <table class="table table-striped table-hover table-sm "  id="table">
+                            <table class="table table-striped table-hover table-sm"  id="table">
                                 <thead class="bg-info text-white ">
                                     <tr>
                                         <th>S/NO</th>

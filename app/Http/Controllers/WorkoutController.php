@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Workout;
 use App\Models\WorkoutMedia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -52,7 +53,7 @@ class WorkoutController extends Controller
             'youtube_link' => 'required',
             'workout_image' => 'required'
         ]);
-       
+
 
         $workout = new Workout;
         $workout->user_id = auth()->user()->id;
@@ -87,25 +88,27 @@ class WorkoutController extends Controller
         return redirect()->back();
     }
 
-
-    // public function storeMultipleImages(){
-    //     $image = array();
-    //     if($files = $request->file('workout_image')){
-    //         foreach ($files as $file) {
-    //             $image_name = $file->getClientOriginalName();
-    //         }
-    //     }
-    // }
-
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Workout  $workout
      * @return \Illuminate\Http\Response
      */
-    public function show(Workout $workout)
+    public function show($id)
     {
-        //
+        $id = Crypt::decrypt($id);
+
+
+        //Get Workout
+        $workout = Workout::find($id);
+
+        //Get Workout Media
+        $images = WorkoutMedia::where('workout_id', $id)->get();
+
+        return view('workouts.show', [
+            'workout' => $workout,
+            'images' => $images
+        ]);
     }
 
     /**
