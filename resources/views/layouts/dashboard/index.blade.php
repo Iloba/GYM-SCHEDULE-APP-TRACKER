@@ -456,6 +456,7 @@
         crossorigin="anonymous"
     ></script>
     @stack('scripts')
+    @stack('calendar-scripts')
 
     <script src="{{ asset('js/dashboard.js') }}"></script>
 

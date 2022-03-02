@@ -52,7 +52,7 @@
                                 </a>
                             </div>
                             @empty
-                            <p>No Workouts Please add</p>
+                            <p class="text-center">No Workouts Please add</p>
                             @endforelse
                         </div>
                     </div>

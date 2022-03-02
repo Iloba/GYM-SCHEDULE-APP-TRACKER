@@ -22,6 +22,14 @@
         </div>
     </div>
 </div>
+@push('calendar-scripts')
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#calendar").fullCalendar({});
+    });
+</script>
+@endpush
 
 @endsection
+
 
