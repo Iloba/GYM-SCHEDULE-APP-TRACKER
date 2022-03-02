@@ -8,9 +8,9 @@
 	<!-- App CSS -->
 	<link rel="stylesheet" href="{{ asset('css/portal.css') }}">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap"
-	rel="stylesheet">	
+		rel="stylesheet">
 	<style rel="stylesheet">
-		*{
+		* {
 			font-family: 'Poppins', sans-serif;
 		}
 	</style>
@@ -274,13 +274,27 @@
 	</footer>
 
 	<!-- Javascript -->
+	<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+		integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"
+		integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w=="
+		crossorigin="anonymous"></script>
 	@stack('scripts')
+
+
+	<script src="{{ asset('js/dashboard.js') }}"></script>
+
+
+
 	<script src="{{ asset('js/plugins/popper.min.js') }}"></script>
 	<script src="{{ asset('js/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
 
 
 	<!-- Page Specific JS -->
-	<script src="{{ asset('js/dashboard.js') }}"></script>
+
 
 </body>
 

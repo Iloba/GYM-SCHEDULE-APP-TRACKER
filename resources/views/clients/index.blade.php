@@ -5,18 +5,18 @@
 @endsection
 @section('content')
 <div class="app-wrapper">
-    <div class="app-content pt-3 p-md-3 p-lg-4">
-        <div class="container-xl">
+    <div class="app-content">
+        <div class="container">
             <h3>All Clients</h3>
             <div class="card shadow-sm p-3">
-                <div class="row justify-content-center mx-auto">
+                <div class="row justify-content-center">
                     <div class="col-md-12">
                         <a href="{{ route('clients.create') }}" class="btn btn-info btn-sm text-white mb-4 "><i
                                 class="fas fa-plus"></i> Add Clients</a>
 
-                        <div class="table-responsive" >
+                        <div class="table-responsive">
                             <table class="table table-striped table-hover table-sm"  id="table">
-                                <thead class="bg-info text-white ">
+                                <thead class="bg-info text-white">
                                     <tr>
                                         <th>S/NO</th>
                                         <th>NAME</th>
@@ -101,7 +101,7 @@
                                         </div>
                                     </div>
                                     @empty
-                                    <p>No Clients, Please Add</p>
+                                         <p>No Clients, Please Add</p>
                                     @endforelse
                                 </tbody>
                             </table>
@@ -110,23 +110,14 @@
                     <div class=" d-flex justify-content-center">
                         {{ $clients->links() }}
                     </div>
-
                 </div>
-
             </div>
         </div>
-
     </div>
-
-
-
-    <!--//app-footer-->
-
 </div>
 @endsection
 @push('scripts')
-<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
-    integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+
 <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
     $(document).ready( function () {
