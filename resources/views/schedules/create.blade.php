@@ -37,7 +37,9 @@
                             <div class="form-group mb-3">
                                 <label for="height"><b>Workout</b></label>
                                <select name="workout_type" class="form-control" id="">
-                                   <option value="">Workout</option>
+                                  @foreach ($workouts as $workout)
+                                  <option value="{{ $workout->workout_name  }}">{{ $workout->workout_name  }}</option>
+                                  @endforeach
                                </select>
                                 @error('workout_type')
                                 <span class="text-danger">{{ $message }}</span>

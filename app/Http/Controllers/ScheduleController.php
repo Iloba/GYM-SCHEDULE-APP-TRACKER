@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Workout;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 
@@ -28,10 +29,11 @@ class ScheduleController extends Controller
     {
 
         $clients = Client::where('user_id', auth()->user()->id)->get();
-        // dd($clients);
+        $workouts = Workout::all();
 
         return view('schedules.create', [
-            'clients' => $clients
+            'clients' => $clients,
+            'workouts' => $workouts
         ]);
     }
 
