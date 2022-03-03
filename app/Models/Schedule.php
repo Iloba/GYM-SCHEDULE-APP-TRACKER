@@ -9,6 +9,13 @@ class Schedule extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'client',
+        'workout',
+        'date',
+        'time',
+    ];
+
     public function user(){
         return $this->belongsTo(User::class);
     }

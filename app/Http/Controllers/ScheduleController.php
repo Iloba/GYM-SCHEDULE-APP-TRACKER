@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\Workout;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ScheduleController extends Controller
 {
@@ -17,7 +18,19 @@ class ScheduleController extends Controller
     public function index()
     {
         //
-        return view('schedules.index');
+        $schedules = array();
+        $allSchedules = Schedule::where('user_id', auth()->user()->id)->get();
+        foreach ($allSchedules as $schedule) {
+            $schedules[] = [
+                'title' => $schedule->workout,
+                'start' => $schedule->date,
+                'end' => $schedule->date,
+            ];
+        }
+
+        return view('schedules.index', [
+            'schedules' => $schedules
+        ]);
     }
 
     /**
@@ -45,7 +58,34 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
+
+        $request->validate([
+            'client_name' => 'required',
+            'date' => 'required',
+            'workout_type' => 'required',
+            'time' => 'required',
+        ]);
         //
+        $authenticatedUser = auth()->user();
+
+
+        $storeSchedule = $authenticatedUser->schedules()->create([
+            'client' => $request->client_name,
+            'workout' => $request->workout_type,
+            'date' => $request->date,
+            'time' => $request->time,
+        ]);
+
+
+
+        if ($storeSchedule) {
+            Session::flash('success', 'Schedule Created');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Something went wrong ');
+            return redirect()->back();
+        }
     }
 
     /**

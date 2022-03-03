@@ -24,8 +24,17 @@
 </div>
 @push('calendar-scripts')
 <script type="text/javascript">
+let schedules = @json($schedules);
+console.log(schedules);
     $(document).ready(function () {
-        $("#calendar").fullCalendar({});
+        $("#calendar").fullCalendar({
+            header:{
+                left: 'prev, next today',
+                center: 'title',
+                right: 'month, agendaWeek, agendaDay    '
+            },
+            events: schedules
+        });
     });
 </script>
 @endpush

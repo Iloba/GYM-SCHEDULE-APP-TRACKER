@@ -423,7 +423,6 @@
     <!--//app-header-->
     <div class="m-2 p-2">
         @yield('content')
-        <div id="calendar"></div>
     </div>
     <!--//app-wrapper-->
     <footer class="app-footer">
