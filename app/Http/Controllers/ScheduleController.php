@@ -17,19 +17,26 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        //
+        $clients = Client::where('user_id', auth()->user()->id)->get();
+        $workouts = Workout::all();
+
         $schedules = array();
         $allSchedules = Schedule::where('user_id', auth()->user()->id)->get();
+        // $clientName = Client::where('id', $schedule->client)->get();
+        // dd($clientName);
         foreach ($allSchedules as $schedule) {
+           
             $schedules[] = [
                 'title' => $schedule->workout,
-                'start' => $schedule->date,
-                'end' => $schedule->date,
+                'start' => $schedule->start_date,
+                'end' => $schedule->end_date,
             ];
         }
 
         return view('schedules.index', [
-            'schedules' => $schedules
+            'schedules' => $schedules,
+            'clients' => $clients,
+            'workouts' => $workouts
         ]);
     }
 
@@ -61,32 +68,52 @@ class ScheduleController extends Controller
         // dd($request->all());
 
         $request->validate([
-            'client_name' => 'required',
-            'date' => 'required',
-            'workout_type' => 'required',
-            'time' => 'required',
+           
+            'client' => 'required',
+            'workout' => 'required',
+            'start_date' => 'required',
+          
         ]);
-        //
-        $authenticatedUser = auth()->user();
+       
 
+        $schedule = new Schedule;
+        $schedule->user_id = auth()->user()->id;
+        $schedule->client = $request->client;
+        $schedule->workout = $request->workout;
+        $schedule->start_date = $request->start_date;
+        $schedule->end_date = $request->start_date;
 
-        $storeSchedule = $authenticatedUser->schedules()->create([
-            'client' => $request->client_name,
-            'workout' => $request->workout_type,
-            'date' => $request->date,
-            'time' => $request->time,
-        ]);
-
-
-
-        if ($storeSchedule) {
-            Session::flash('success', 'Schedule Created');
-            return redirect()->back();
-        } else {
-            Session::flash('error', 'Something went wrong ');
-            return redirect()->back();
-        }
+        $schedule->save();
+      
+        Session::flash('success', 'Schedule Created');
+        return redirect()->back();
     }
+
+    public function storeOnClick(Request $request){
+        
+        $request->validate([
+            'userId' => 'required',
+            'client' => 'required',
+            'workout' => 'required',
+            'startDate' => 'required',
+            'endDate' => 'required',
+
+        ]);
+       
+
+        $schedule = new Schedule;
+        $schedule->user_id = $request->userId;
+        $schedule->client = $request->client;
+        $schedule->workout = $request->workout;
+        $schedule->start_date = $request->startDate;
+        $schedule->end_date = $request->endDate;
+
+
+        $schedule->save();
+
+        return response()->json($schedule);
+    }
+
 
     /**
      * Display the specified resource.

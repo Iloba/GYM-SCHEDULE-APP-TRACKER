@@ -29,4 +29,6 @@ Route::resource('clients', ClientController::class)->middleware('auth');
 Route::resource('schedules', ScheduleController::class)->middleware('auth');
 Route::resource('workouts', WorkoutController::class)->middleware('auth');
 
+Route::post('store-on-click', [ScheduleController::class, 'storeOnClick'])->name('store.on.click');
+
 

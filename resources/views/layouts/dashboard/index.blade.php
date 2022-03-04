@@ -1,9 +1,10 @@
 @extends('layouts.dashboard.header') @section('body-of-dashboard')
 
 <head>
+    @yield('code')
     <!-- FontAwesome JS-->
     <script defer src="{{ asset('js/all.min.js') }}"></script>
-
+    
     <!-- App CSS -->
     <link rel="stylesheet" href="{{ asset('css/portal.css') }}" />
     <link
