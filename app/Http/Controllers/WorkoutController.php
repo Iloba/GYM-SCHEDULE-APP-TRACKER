@@ -6,6 +6,7 @@ use App\Models\Workout;
 use App\Models\WorkoutMedia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -71,11 +72,17 @@ class WorkoutController extends Controller
             //Get Name
             $imageName = time() . $image->getClientOriginalName();
 
+            //Resize Image
+            $img = Image::make($image)->fit(500)->encode();
+
+
             //Save with Filename
-            Storage::put($imageName, file_get_contents($image));
+            Storage::put($imageName, $img);
 
             //Move file to location
             Storage::move($imageName, 'public/workout_images/' . $imageName);
+
+
 
             $workoutImage = new WorkoutMedia;
             $workoutImage->workout_id = $workout->id;

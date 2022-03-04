@@ -113,7 +113,7 @@
                     let workout =  $('#workout').val();
                     let startDate = moment(start).format('YYYY-MM-DD');
                     let endDate = moment(end).format('YYYY-MM-DD');
-                    console.log(userId, client, workout, startDate, endDate );
+                    // console.log(userId, client, workout, startDate, endDate );
 
                     $.ajax({
                        
@@ -124,8 +124,9 @@
                         data:{userId, client, workout, startDate, endDate, },
                         success:function(response){
 
-                        $('#scheduleModal').modal('hide');
-                        $('#calendar').fullCalendar('renderEvent', {
+                        // $('#scheduleModal').modal('hide');
+                        // alert('hello');
+                        $('#calendar').fullCalendar('renderEvents', {
                             'title': response.workout, 
                             'start': response.start_date, 
                             'end': response.end_date, 

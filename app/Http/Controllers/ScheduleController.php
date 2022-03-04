@@ -27,7 +27,7 @@ class ScheduleController extends Controller
         foreach ($allSchedules as $schedule) {
            
             $schedules[] = [
-                'title' => $schedule->workout,
+                'title' => Client::find($schedule->client)->name,
                 'start' => $schedule->start_date,
                 'end' => $schedule->end_date,
             ];
@@ -100,7 +100,7 @@ class ScheduleController extends Controller
 
         ]);
        
-
+        return $request->startDate;
         $schedule = new Schedule;
         $schedule->user_id = $request->userId;
         $schedule->client = $request->client;
