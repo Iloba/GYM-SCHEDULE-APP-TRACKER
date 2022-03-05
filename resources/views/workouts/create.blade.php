@@ -94,7 +94,6 @@
                                     multiple
                                     class="form-control"
                                 />
-                                <br />
                             </div>
                             {{--
                             <span
@@ -102,7 +101,7 @@
                                 id="add-img-button"
                                 >Add Image</span
                             >
-                            --}} @error('image')
+                            --}} @error('workout_image')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror <br />
                         </div>

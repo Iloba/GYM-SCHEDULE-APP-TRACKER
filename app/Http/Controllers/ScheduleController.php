@@ -100,7 +100,7 @@ class ScheduleController extends Controller
 
         ]);
        
-        return $request->startDate;
+       
         $schedule = new Schedule;
         $schedule->user_id = $request->userId;
         $schedule->client = $request->client;

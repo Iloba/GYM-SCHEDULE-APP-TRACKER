@@ -124,22 +124,19 @@
                         data:{userId, client, workout, startDate, endDate, },
                         success:function(response){
 
-                        // $('#scheduleModal').modal('hide');
-                        // alert('hello');
-                        $('#calendar').fullCalendar('renderEvents', {
-                            'title': response.workout, 
-                            'start': response.start_date, 
-                            'end': response.end_date, 
-                        });
-
-
+                            $('#scheduleModal').modal('hide');
+                            // alert('hello');
+                            $('#calendar').fullCalendar('renderEvents', {
+                                'title': response.workout, 
+                                'start': response.start_date, 
+                                'end': response.end_date, 
+                            });
                         },
                         error: function(error){
-                            
-                            if(error.responseJSON.errors){
-                                $('#clientError').html(error.responseJSON.errors.client);
-                                $('#workoutError').html(error.responseJSON.errors.workout);
-                            }
+                            // if(error.responseJSON.errors){
+                            //     $('#clientError').html(error.responseJSON.errors.client);
+                            //     $('#workoutError').html(error.responseJSON.errors.workout);
+                            // }
                         },
                     });
                 })

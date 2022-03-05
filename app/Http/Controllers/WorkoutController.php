@@ -150,15 +150,12 @@ class WorkoutController extends Controller
     public function destroy($id)
     {
         $id = Crypt::decrypt($id);
-        
-        
 
         //YOU CAN ONLY DELETE WORKOUT YOU CREATED
         $workout = Workout::find($id);
 
-        // dd($workout);
 
-        if($workout->user_id !== auth()->user()->id){
+        if ($workout->user_id !== auth()->user()->id) {
             Session::flash('error', 'Unauthorized Action');
             return redirect()->back();
         }
@@ -166,6 +163,5 @@ class WorkoutController extends Controller
         $workout->delete();
         Session::flash('success', 'Delete Successful');
         return redirect()->route('workouts.index');
-        
     }
 }

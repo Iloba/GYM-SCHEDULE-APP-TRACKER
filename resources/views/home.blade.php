@@ -1,14 +1,4 @@
 @extends('layouts.dashboard.index')
-@section('toastr')
-<link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
-integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
-crossorigin="anonymous"
-referrerpolicy="no-referrer"
-/>
-
- @endsection
 @section('content')
 
 <div class="app-wrapper">
@@ -161,22 +151,4 @@ referrerpolicy="no-referrer"
     </div>
     <!--//app-content-->
 </div>
-<script
-src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
-integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
-crossorigin="anonymous"
-></script>
-{{-- toastr success --}}
-@if (Session::has('success'))
-<script>
-    toastr.success("{!! Session::get('success') !!}");
-</script>
-@endif
-
-{{-- toastr error --}}
-@if (Session::has('error'))
-<script>
-    toastr.error("{!! Session::get('error') !!}");
-</script>
-@endif
 @endsection
