@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Workout;
 use App\Models\WorkoutMedia;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Intervention\Image\Facades\Image;
@@ -19,7 +20,7 @@ class WorkoutController extends Controller
      */
     public function index()
     {
-        $workouts = Workout::where('user_id', auth()->user()->id)->latest()->paginate(9);
+        $workouts = Workout::latest()->paginate(9);
         return view('workouts.index', [
             'workouts' => $workouts
         ]);
@@ -146,8 +147,25 @@ class WorkoutController extends Controller
      * @param  \App\Models\Workout  $workout
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Workout $workout)
+    public function destroy($id)
     {
-        //
+        $id = Crypt::decrypt($id);
+        
+        
+
+        //YOU CAN ONLY DELETE WORKOUT YOU CREATED
+        $workout = Workout::find($id);
+
+        // dd($workout);
+
+        if($workout->user_id !== auth()->user()->id){
+            Session::flash('error', 'Unauthorized Action');
+            return redirect()->back();
+        }
+
+        $workout->delete();
+        Session::flash('success', 'Delete Successful');
+        return redirect()->route('workouts.index');
+        
     }
 }

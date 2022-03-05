@@ -27,6 +27,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     @yield('css')
+    @yield('toastr')
 </head>
 
 <body class="app">
@@ -466,6 +467,19 @@
         }}"></script>
 
     <!-- Page Specific JS -->
+     {{-- toastr success --}}
+     @if (Session::has('success'))
+     <script>
+         toastr.success("{!! Session::get('success') !!}");
+     </script>
+     @endif
+
+     {{-- toastr error --}}
+     @if (Session::has('error'))
+     <script>
+         toastr.error("{!! Session::get('error') !!}");
+     </script>
+     @endif
 </body>
 
 @endsection

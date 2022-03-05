@@ -1,4 +1,14 @@
-@extends('layouts.dashboard.index') 
+@extends('layouts.dashboard.index')
+@section('toastr')
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+crossorigin="anonymous"
+referrerpolicy="no-referrer"
+/>
+
+ @endsection
 @section('content')
 
 <div class="app-wrapper">
@@ -7,10 +17,7 @@
             @yield('content')
             <h1 class="app-page-title">Home</h1>
 
-            <div
-                class="app-card alert alert-dismissible shadow-sm mb-4 border-left-decoration"
-                role="alert"
-            >
+            <div class="app-card alert alert-dismissible shadow-sm mb-4 border-left-decoration" role="alert">
                 <div class="inner">
                     <div class="app-card-body p-3 p-lg-4">
                         <h3 class="mb-3">Welcome, {{ Auth::user()->name }}!</h3>
@@ -29,12 +36,7 @@
                             <!--//col-->
                         </div>
                         <!--//row-->
-                        <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="alert"
-                            aria-label="Close"
-                        ></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     <!--//app-card-body-->
                 </div>
@@ -44,9 +46,7 @@
 
             <div class="row g-4 mb-4">
                 <div class="col-12 col-lg-4">
-                    <div
-                        class="app-card app-card-basic d-flex flex-column align-items-start shadow-sm"
-                    >
+                    <div class="app-card app-card-basic d-flex flex-column align-items-start shadow-sm">
                         <div class="app-card-header p-3 border-bottom-0">
                             <div class="row align-items-center gx-3">
                                 <div class="col-auto">
@@ -72,11 +72,7 @@
                         </div>
                         <!--//app-card-body-->
                         <div class="app-card-footer p-4 mt-auto">
-                            <a
-                                class="btn app-btn-secondary"
-                                href="{{ route('clients.create') }}"
-                                >Add New Client</a
-                            >
+                            <a class="btn app-btn-secondary" href="{{ route('clients.create') }}">Add New Client</a>
                         </div>
                         <!--//app-card-footer-->
                     </div>
@@ -84,9 +80,7 @@
                 </div>
                 <!--//col-->
                 <div class="col-12 col-lg-4">
-                    <div
-                        class="app-card app-card-basic d-flex flex-column align-items-start shadow-sm"
-                    >
+                    <div class="app-card app-card-basic d-flex flex-column align-items-start shadow-sm">
                         <div class="app-card-header p-3 border-bottom-0">
                             <div class="row align-items-center gx-3">
                                 <div class="col-auto">
@@ -114,11 +108,7 @@
                         </div>
                         <!--//app-card-body-->
                         <div class="app-card-footer p-4 mt-auto">
-                            <a
-                                class="btn app-btn-secondary"
-                                href="{{ route('schedules.create') }}"
-                                >Create New</a
-                            >
+                            <a class="btn app-btn-secondary" href="{{ route('schedules.create') }}">Create New</a>
                         </div>
                         <!--//app-card-footer-->
                     </div>
@@ -126,9 +116,7 @@
                 </div>
                 <!--//col-->
                 <div class="col-12 col-lg-4">
-                    <div
-                        class="app-card app-card-basic d-flex flex-column align-items-start shadow-sm"
-                    >
+                    <div class="app-card app-card-basic d-flex flex-column align-items-start shadow-sm">
                         <div class="app-card-header p-3 border-bottom-0">
                             <div class="row align-items-center gx-3">
                                 <div class="col-auto">
@@ -153,11 +141,7 @@
                         </div>
                         <!--//app-card-body-->
                         <div class="app-card-footer p-4 mt-auto">
-                            <a
-                                class="btn app-btn-secondary"
-                                href="{{ route('workouts.create') }}"
-                                >Create New</a
-                            >
+                            <a class="btn app-btn-secondary" href="{{ route('workouts.create') }}">Create New</a>
                         </div>
                         <!--//app-card-footer-->
                     </div>
@@ -168,8 +152,8 @@
             <!--//row-->
 
             <div class="row g-4 mb-4">
- 
-           
+
+
             </div>
             <!--//row-->
         </div>
@@ -177,4 +161,22 @@
     </div>
     <!--//app-content-->
 </div>
+<script
+src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+crossorigin="anonymous"
+></script>
+{{-- toastr success --}}
+@if (Session::has('success'))
+<script>
+    toastr.success("{!! Session::get('success') !!}");
+</script>
+@endif
+
+{{-- toastr error --}}
+@if (Session::has('error'))
+<script>
+    toastr.error("{!! Session::get('error') !!}");
+</script>
+@endif
 @endsection
