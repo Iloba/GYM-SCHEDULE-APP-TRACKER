@@ -47,7 +47,8 @@
                                             {{ $workout->workout_type }}</i
                                         >
                                         <br />
-                                        See more....
+                                        See more.... 
+                                       
                                     </p>
                                 </a>
                             </div>

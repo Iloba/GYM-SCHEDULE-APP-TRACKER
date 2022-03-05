@@ -61,15 +61,7 @@
                                 <h5 class="text-center mb-5">Video</h5>
                                 @if ($workout->youtube_link)
                                 <div class="iframe">
-                                    <iframe
-                                        width="390"
-                                        height="215"
-                                        src="{{ $workout->youtube_link }}"
-                                        title="YouTube video player"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen
-                                    ></iframe>
+                                   {!! $workout->youtube_link !!}
                                 </div>
                                 @else
                                 <p>No YOutube Video</p>
@@ -91,6 +83,9 @@
                             @empty
                             <p>No Images Available</p>
                             @endforelse
+                            <div class="d-flex justify-content-center mt-2">
+                                <button type="submit" class="btn btn-danger btn-sm text-white"><i class="fa fa-trash"></i></button>
+                            </div>
                         </div>
                     </div>
                 </div>

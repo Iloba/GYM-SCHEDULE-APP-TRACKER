@@ -83,7 +83,6 @@ class WorkoutController extends Controller
             Storage::move($imageName, 'public/workout_images/' . $imageName);
 
 
-
             $workoutImage = new WorkoutMedia;
             $workoutImage->workout_id = $workout->id;
             $workoutImage->media_type = 'image';
