@@ -125,6 +125,7 @@
                         success:function(response){
 
                             $('#scheduleModal').modal('hide');
+                            swal("Good job!", "Schedule Created Successfully", "success");
                             location.reload();
                            
                             // $('#calendar').fullCalendar('renderEvent', {
@@ -159,7 +160,7 @@
                 data:{startDate, endDate, },
                 success:function(response){
 
-                    console.log(response);
+                    swal("Good job!", "Schedule Updated Successfully", "success");
                    
                 },
                 error: function(error){
