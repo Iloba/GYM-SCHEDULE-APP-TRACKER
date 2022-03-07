@@ -30,5 +30,6 @@ Route::resource('schedules', ScheduleController::class)->middleware('auth');
 Route::resource('workouts', WorkoutController::class)->middleware('auth');
 
 Route::post('store-on-click', [ScheduleController::class, 'storeOnClick'])->name('store.on.click');
+Route::patch('update-on-click/{id}', [ScheduleController::class, 'updateOnClick'])->name('update.on.click');
 
 

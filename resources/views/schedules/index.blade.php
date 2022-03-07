@@ -113,7 +113,7 @@
                     let workout =  $('#workout').val();
                     let startDate = moment(start).format('YYYY-MM-DD');
                     let endDate = moment(end).format('YYYY-MM-DD');
-                    // console.log(userId, client, workout, startDate, endDate );
+                    console.log(userId, client, workout, startDate, endDate );
 
                     $.ajax({
                        
@@ -125,23 +125,49 @@
                         success:function(response){
 
                             $('#scheduleModal').modal('hide');
-                            // alert('hello');
-                            $('#calendar').fullCalendar('renderEvents', {
-                                'title': response.workout, 
-                                'start': response.start_date, 
-                                'end': response.end_date, 
-                            });
+                            location.reload();
+                           
+                            // $('#calendar').fullCalendar('renderEvent', {
+                            //     'title': response.client, 
+                            //     'start': response.start_date, 
+                            //     'end': response.end_date, 
+                            // });
                         },
                         error: function(error){
-                            // if(error.responseJSON.errors){
-                            //     $('#clientError').html(error.responseJSON.errors.client);
-                            //     $('#workoutError').html(error.responseJSON.errors.workout);
-                            // }
+                            if(error.responseJSON.errors){
+                                $('#clientError').html(error.responseJSON.errors.client);
+                                $('#workoutError').html(error.responseJSON.errors.workout);
+                            }
                         },
                     });
                 })
             },
             editable: true,
+            eventDrop: function(event){
+                
+               let id = event.id;
+               let startDate = moment(event.start).format('YYYY-MM-DD');
+               let endDate = moment(event.end).format('YYYY-MM-DD');
+
+               
+               $.ajax({
+                       
+                url: "{{ route('update.on.click', '') }}" + '/' + id,
+                type: 'PATCH',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                dataType: 'json',
+                data:{startDate, endDate, },
+                success:function(response){
+
+                    console.log(response);
+                   
+                },
+                error: function(error){
+                    
+                    console.log(error);
+                },
+            });
+            }
         });
     });
 </script>

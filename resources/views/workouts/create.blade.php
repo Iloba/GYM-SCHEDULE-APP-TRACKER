@@ -95,13 +95,7 @@
                                     class="form-control"
                                 />
                             </div>
-                            {{--
-                            <span
-                                class="btn btn-info text-white"
-                                id="add-img-button"
-                                >Add Image</span
-                            >
-                            --}} @error('workout_image')
+                           @error('workout_image')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror <br />
                         </div>
@@ -110,7 +104,7 @@
                             <button
                                 type="submit"
                                 class="btn btn-success text-white d-block mx-auto"
-                            >
+                            >2
                                 <i class="fas fa-plus"></i> Add Workout
                             </button>
                         </div>

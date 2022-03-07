@@ -25,8 +25,8 @@ class ScheduleController extends Controller
         // $clientName = Client::where('id', $schedule->client)->get();
         // dd($clientName);
         foreach ($allSchedules as $schedule) {
-           
             $schedules[] = [
+                'id' => $schedule->id,
                 'title' => Client::find($schedule->client)->name,
                 'start' => $schedule->start_date,
                 'end' => $schedule->end_date,
@@ -68,13 +68,13 @@ class ScheduleController extends Controller
         // dd($request->all());
 
         $request->validate([
-           
+
             'client' => 'required',
             'workout' => 'required',
             'start_date' => 'required',
-          
+
         ]);
-       
+
 
         $schedule = new Schedule;
         $schedule->user_id = auth()->user()->id;
@@ -84,13 +84,14 @@ class ScheduleController extends Controller
         $schedule->end_date = $request->start_date;
 
         $schedule->save();
-      
+
         Session::flash('success', 'Schedule Created');
         return redirect()->back();
     }
 
-    public function storeOnClick(Request $request){
-        
+    public function storeOnClick(Request $request)
+    {
+
         $request->validate([
             'userId' => 'required',
             'client' => 'required',
@@ -99,19 +100,35 @@ class ScheduleController extends Controller
             'endDate' => 'required',
 
         ]);
+
+
+        $schedule = Schedule::create([
+            'user_id' => $request->userId,
+            'client' =>  $request->client,
+            'workout' =>  $request->workout,
+            'start_date' =>  $request->startDate,
+            'end_date' =>   $request->endDate
+        ]);
        
-       
-        $schedule = new Schedule;
-        $schedule->user_id = $request->userId;
-        $schedule->client = $request->client;
-        $schedule->workout = $request->workout;
-        $schedule->start_date = $request->startDate;
-        $schedule->end_date = $request->endDate;
+        return response()->json('Schedule Created');
+    }
 
 
-        $schedule->save();
+    public function updateOnClick(Request $request, $id){
 
-        return response()->json($schedule);
+        $schedule = Schedule::find($id);
+        if(!$schedule){
+            return response()->json([
+                'error' => 'Unable to locate Event ID'
+            ], 404);
+        }
+        $schedule->update([
+            'start_date' => $request->startDate,
+            'end_date' => $request->startDate,
+        ]);
+        return response()->json('Event Updated');
+    
+
     }
 
 

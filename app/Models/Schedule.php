@@ -10,10 +10,11 @@ class Schedule extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'client',
         'workout',
-        'date',
-        'time',
+        'start_date',
+        'end_date',
     ];
 
     public function user(){

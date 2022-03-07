@@ -9,10 +9,13 @@
         <div class="container">
             <h3>All Clients</h3>
             <div class="card shadow-sm p-3">
+                <div class="">
+                    <a href="{{ route('clients.create') }}" class="btn btn-info btn-sm text-white mb-4 "><i
+                            class="fas fa-plus"></i> Add Clients</a>
+                </div>
                 <div class="row justify-content-center">
                     <div class="col-md-12">
-                        <a href="{{ route('clients.create') }}" class="btn btn-info btn-sm text-white mb-4 "><i
-                                class="fas fa-plus"></i> Add Clients</a>
+                      
 
                         <div class="table-responsive">
                             <table class="table table-striped table-hover table-sm"  id="table">
