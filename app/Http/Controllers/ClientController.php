@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\Client;
 use App\Models\Workout;
 use App\Models\Schedule;
+use App\Models\WorkoutMedia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
@@ -184,27 +185,43 @@ class ClientController extends Controller
     {
         $schedules = Schedule::where('client', $id)->get();
 
-        if($schedules->count() > 0){
-            $writer = SimpleExcelWriter::streamDownload('schedule.csv', 'csv');
-            foreach ($schedules as $schedule) {
-                $clientName = Client::find($schedule->client)->name;
-                $description = Workout::find($schedule->workout)->description;
-                $subject = Workout::find( $schedule->workout)->workout_name;
-                $writer->addRow([
-                    'Subject' =>  $subject. ' for '.$clientName,
-                    'Start Date' => Carbon::parse($schedule->start_date)->format('d/m/Y'),
-                    'Start Time' => '10:00 AM',
-                    'End Date' => carbon::parse($schedule->end_date)->format('d/m/Y'),
-                    'End Time' => '10:00 AM',
-                    'Description' =>  $description,
-                    'All Day Event' => TRUE,
-                ]);
-                // $createdAt = Carbon::parse($item['created_at']);
-            }
-        }else{
+        if (!$schedules->count() > 0) {
             Session::flash('error', 'No Schedules for this Client');
             return redirect()->back();
         }
 
+        $writer = SimpleExcelWriter::streamDownload('schedule.csv', 'csv');
+        foreach ($schedules as $schedule) {
+            $clientName = Client::find($schedule->client)->name;
+            $description = Workout::find($schedule->workout)->description;
+            $subject = Workout::find($schedule->workout)->workout_name;
+            $url = route('user.workouts.show', Crypt::encrypt($schedule->workout));
+            $writer->addRow([
+                'Subject' =>  $subject . ' for ' . $clientName,
+                'Start Date' => Carbon::parse($schedule->start_date)->format('d/m/Y'),
+                'Start Time' => '10:00 AM',
+                'End Date' => carbon::parse($schedule->end_date)->format('d/m/Y'),
+                'End Time' => '10:00 AM',
+                'Description' => ' Description: ' . $description . ' Link: ' . $url,
+                'All Day Event' => TRUE,
+            ]);
+        }
+    }
+
+    public function showWorkoutsToUsers($id)
+    {
+
+        $id = Crypt::decrypt($id);
+
+        //Get Workout
+        $workout = Workout::find($id);
+
+        //Get Workout Media
+        $images = WorkoutMedia::where('workout_id', $id)->get();
+
+        return view('users.show', [
+            'workout' => $workout,
+            'images' => $images
+        ]);
     }
 }

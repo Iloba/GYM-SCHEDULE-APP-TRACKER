@@ -82,7 +82,7 @@ referrerpolicy="no-referrer"
                                             </div>
 
                                         </td>
-                                        <td><a href="{{ route('export.client.data', $client->id) }}" class="btn btn-primary btn-sm">Export</a></td>
+                                        <td><a href="{{ route('export.client.data', $client->id) }}" class="btn btn-primary btn-sm text-white"> <i class="fa fa-file-csv"></i> Export</a></td>
                                     </tr>
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal-{{ $client->id }}" tabindex="-1"

@@ -76,19 +76,22 @@
                                 $parameter = Crypt::encrypt($workout->id);
                                 @endphp
 
-                                @if ($workout->user_id !== auth()->user()->id)
+                                @if (Auth::user())
+                                    @if ($workout->user_id !== auth()->user()->id)
 
-                                <p></p>
+                                    <p></p>
 
-                                @else
-                                <a href="{{ route('workouts.destroy',  $parameter) }}" onclick="
-                                event.preventDefault();
-                                if(confirm('Dangerous Action, Do you want to Continue??')){
-                                     document.getElementById('{{ 'form-delete-'.  $parameter }}').submit();
-                                }
-                
-                                " class="btn btn-danger btn-sm text-white"><i class="fa fa-trash"></i></a>
+                                    @else
+                                    <a href="{{ route('workouts.destroy',  $parameter) }}" onclick="
+                                    event.preventDefault();
+                                    if(confirm('Dangerous Action, Do you want to Continue??')){
+                                        document.getElementById('{{ 'form-delete-'.  $parameter }}').submit();
+                                    }
+                    
+                                    " class="btn btn-danger btn-sm text-white"><i class="fa fa-trash"></i></a>
+                                    @endif 
                                 @endif
+                                
 
 
 

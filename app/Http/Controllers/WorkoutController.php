@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Storage;
 
 class WorkoutController extends Controller
 {
+
+    
     /**
      * Display a listing of the resource.
      *
