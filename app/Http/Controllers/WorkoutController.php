@@ -52,7 +52,7 @@ class WorkoutController extends Controller
         $request->validate([
             'workout_name' => 'required',
             'workout_type' => 'required',
-            'workout_image' => 'required',
+            'workout_image' => 'required|mimes:jpg,png,gif|max:1024',
             'workout_description' => 'required',
             'youtube_link' => 'required',
             'workout_image' => 'required'

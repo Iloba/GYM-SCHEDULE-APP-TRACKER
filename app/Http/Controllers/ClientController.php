@@ -202,7 +202,7 @@ class ClientController extends Controller
                 'Start Time' => '10:00 AM',
                 'End Date' => carbon::parse($schedule->end_date)->format('d/m/Y'),
                 'End Time' => '10:00 AM',
-                'Description' => ' Description: ' . $description . ' Link: ' . $url,
+                'Description' => ' Description: ' .  $description . '<br/>'. ' Link: ' . $url,
                 'All Day Event' => TRUE,
             ]);
         }
