@@ -7,8 +7,11 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
 
+
+
 class ClientSeeder extends Seeder
 {
+  
     /**
      * Run the database seeds.
      *
@@ -16,11 +19,13 @@ class ClientSeeder extends Seeder
      */
     public function run()
     {
+      
+    
         //Insert 100 records into the db
         for($i=0; $i<20; $i++){
             $clients[] = [
                 'user_id' => 1,
-                'name' => Str::random(10),
+                'name' => Str::random('name'),
                 'phone' => Str::random(10),
                 'email' => Str::random(10).'@gmail.com',
                 'age' => Str::random(2),

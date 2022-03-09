@@ -3,16 +3,21 @@
 namespace App\Http\Controllers;
 
 
+use Carbon\Carbon;
 use App\Models\Client;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\StoreClientRequest;
+use Spatie\SimpleExcel\SimpleExcelWriter;
+
+// use Excel;
 
 class ClientController extends Controller
 {
 
-   
+
     /**
      * Display a listing of the resource.
      *
@@ -172,5 +177,29 @@ class ClientController extends Controller
 
         Session::flash('success', 'Client Deleted');
         return redirect()->back();
+    }
+
+    public function exportClientData($id)
+    {
+        $schedules = Schedule::where('client', $id)->get();
+
+        if($schedules->count() > 0){
+            $writer = SimpleExcelWriter::streamDownload('schedule.csv', 'csv');
+            foreach ($schedules as $schedule) {
+                $clientName = Client::find($schedule->client)->name;
+                $writer->addRow([
+                    'Subject' =>  $schedule->workout,
+                    'Start Date' => Carbon::parse($schedule->start_date)->format('M d Y'),
+                    'Start Time' => Carbon::parse($schedule->start_date)->format('M d Y'),
+                    'End Date' => $schedule->end_date,
+                    'End Time' => $schedule->end_date,
+                ]);
+                // $createdAt = Carbon::parse($item['created_at']);
+            }
+        }else{
+            Session::flash('error', 'No Schedules for this Client');
+            return redirect()->back();
+        }
+
     }
 }

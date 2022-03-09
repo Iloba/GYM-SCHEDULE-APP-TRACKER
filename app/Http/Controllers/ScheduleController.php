@@ -109,15 +109,16 @@ class ScheduleController extends Controller
             'start_date' =>  $request->startDate,
             'end_date' =>   $request->endDate
         ]);
-       
+
         return response()->json('Schedule Created');
     }
 
 
-    public function updateOnClick(Request $request, $id){
+    public function updateOnClick(Request $request, $id)
+    {
 
         $schedule = Schedule::find($id);
-        if(!$schedule){
+        if (!$schedule) {
             return response()->json([
                 'error' => 'Unable to locate Event ID'
             ], 404);
@@ -127,8 +128,19 @@ class ScheduleController extends Controller
             'end_date' => $request->startDate,
         ]);
         return response()->json('Event Updated');
-    
+    }
 
+    public function deleteOnClick($id)
+    {
+        $schedule = Schedule::find($id);
+        if (!$schedule) {
+            return response()->json([
+                'error' => 'Unable to locate Event ID'
+            ], 404);
+        }
+
+        $schedule->delete();
+        return $id;
     }
 
 

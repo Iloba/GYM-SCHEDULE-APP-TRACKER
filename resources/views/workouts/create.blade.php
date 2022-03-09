@@ -104,7 +104,7 @@
                             <button
                                 type="submit"
                                 class="btn btn-success text-white d-block mx-auto"
-                            >2
+                            >
                                 <i class="fas fa-plus"></i> Add Workout
                             </button>
                         </div>

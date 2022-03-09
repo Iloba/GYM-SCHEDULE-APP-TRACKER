@@ -2,6 +2,13 @@
 @section('css')
 <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+crossorigin="anonymous"
+referrerpolicy="no-referrer"
+/>
 @endsection
 @section('content')
 <div class="app-wrapper">
@@ -29,6 +36,7 @@
                                         <th>AGE</th>
                                         <th>MORE</th>
                                         <th>ACTION</th>
+                                        <th>Export </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -74,6 +82,7 @@
                                             </div>
 
                                         </td>
+                                        <td><a href="{{ route('export.client.data', $client->id) }}" class="btn btn-primary btn-sm">Export</a></td>
                                     </tr>
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal-{{ $client->id }}" tabindex="-1"
@@ -118,6 +127,18 @@
         </div>
     </div>
 </div>
+@if (Session::has('success'))
+     <script>
+         toastr.success("{!! Session::get('success') !!}");
+     </script>
+     @endif
+
+     {{-- toastr error --}}
+     @if (Session::has('error'))
+     <script>
+         toastr.error("{!! Session::get('error') !!}");
+     </script>
+     @endif
 @endsection
 @push('scripts')
 
@@ -127,4 +148,5 @@
    $('#table').DataTable();
   } );
 </script>
+
 @endpush

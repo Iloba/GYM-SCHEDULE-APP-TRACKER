@@ -18,8 +18,8 @@ class CreateSchedulesTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('client');
             $table->string('workout');
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
+            $table->string('start_date');
+            $table->string('end_date');
             $table->timestamps();
         });
     }

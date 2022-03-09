@@ -90,7 +90,7 @@
                             <div
                                 class="app-utility-item app-notifications-dropdown dropdown"
                             >
-                                <a
+                                {{-- <a
                                     class="dropdown-toggle no-toggle-arrow"
                                     id="notifications-dropdown-toggle"
                                     data-bs-toggle="dropdown"
@@ -117,7 +117,7 @@
                                         />
                                     </svg>
                                     <span class="icon-badge">1</span>
-                                </a>
+                                </a> --}}
                                 <!--//dropdown-toggle-->
 
                                 <div

@@ -31,5 +31,9 @@ Route::resource('workouts', WorkoutController::class)->middleware('auth');
 
 Route::post('store-on-click', [ScheduleController::class, 'storeOnClick'])->name('store.on.click');
 Route::patch('update-on-click/{id}', [ScheduleController::class, 'updateOnClick'])->name('update.on.click');
+Route::delete('delete-on-click/{id}', [ScheduleController::class, 'deleteOnClick'])->name('delete.on.click');
+
+
+Route::get('/export-user-workout/{id}', [ClientController::class, 'exportClientData'])->name('export.client.data');
 
 
