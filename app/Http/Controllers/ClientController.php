@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Client;
+use App\Models\Workout;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -187,12 +188,16 @@ class ClientController extends Controller
             $writer = SimpleExcelWriter::streamDownload('schedule.csv', 'csv');
             foreach ($schedules as $schedule) {
                 $clientName = Client::find($schedule->client)->name;
+                $description = Workout::find($schedule->workout)->description;
+                $subject = Workout::find( $schedule->workout)->workout_name;
                 $writer->addRow([
-                    'Subject' =>  $schedule->workout,
-                    'Start Date' => Carbon::parse($schedule->start_date)->format('M d Y'),
-                    'Start Time' => Carbon::parse($schedule->start_date)->format('M d Y'),
-                    'End Date' => $schedule->end_date,
-                    'End Time' => $schedule->end_date,
+                    'Subject' =>  $subject. ' for '.$clientName,
+                    'Start Date' => Carbon::parse($schedule->start_date)->format('d/m/Y'),
+                    'Start Time' => '10:00 AM',
+                    'End Date' => carbon::parse($schedule->end_date)->format('d/m/Y'),
+                    'End Time' => '10:00 AM',
+                    'Description' =>  $description,
+                    'All Day Event' => TRUE,
                 ]);
                 // $createdAt = Carbon::parse($item['created_at']);
             }

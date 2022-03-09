@@ -37,7 +37,7 @@
                                 <label for="height"><b>Workout</b></label>
                                <select name="workout" class="form-control" id="">
                                   @foreach ($workouts as $workout)
-                                  <option value="{{ $workout->workout_name  }}">{{ $workout->workout_name  }}</option>
+                                  <option value="{{ $workout->id }}">{{ $workout->workout_name  }}</option>
                                   @endforeach
                                </select>
                                 @error('workout')
