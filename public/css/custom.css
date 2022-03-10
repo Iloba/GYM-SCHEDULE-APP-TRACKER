@@ -32,3 +32,12 @@ body::-webkit-scrollbar-thumb {
   background-color: #031eb3;
   /* outline: 1px solid slategrey; */
 }
+@media screen and (min-width: 600px) {
+    .home-page-bg{
+      
+        background-position:center center;
+        
+      
+        
+    }
+  }
