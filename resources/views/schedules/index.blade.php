@@ -14,8 +14,8 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <h5 class="modal-title" id="exampleModalLabel">Schedule Clients</h5>
+                        <button type="button" class="close" data-dismiss="modal" id="closeModal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -49,7 +49,7 @@
                             <span id="workoutError" class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                      
+
                         <div class="form-group">
                             <button id="saveSchedule" type="submit" class="btn btn-success text-white d-block mx-auto">
                                 <i class="fas fa-plus"></i> Add Schedule</button>
@@ -57,7 +57,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                        {{-- <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                        --}}
                     </div>
                 </div>
             </div>
@@ -186,6 +187,11 @@
             // return Ext.Date.format(dropInfo.start, 'Y-m-d') === Ext.Date.format(dropInfo.end, 'Y-m-d');
             // }
         });
+        $('#closeModal').click(function(){
+            $('#scheduleModal').modal('hide');
+        })
+       
+       
     });
 </script>
 @endpush

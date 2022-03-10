@@ -34,7 +34,7 @@
                                     }}"
                                 >
                                     <p class="text-center">
-                                        <span class="btn btn-success"
+                                        <span class="btn btn-primary"
                                             ><i class="fas fa-running"></i
                                         ></span>
                                     </p>
