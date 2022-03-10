@@ -8,14 +8,8 @@
 
 <div class="app-wrapper">
     <div class="app-content pt-3 p-md-3 p-lg-4">
-        {{--
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Launch demo modal
-        </button> --}}
-
         <!-- Modal -->
-        <div class="modal fade" id="scheduleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="scheduleModal" tabindex="-1" role="dialog" aria-labelledby="scheduleModal"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -55,13 +49,7 @@
                             <span id="workoutError" class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        {{-- <div class="form-group mb-3">
-                            <label for="date"><b>Date</b></label>
-                            <input type="date" name="date" class="form-control" placeholder="phone...">
-                            @error('date')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div> --}}
+                      
                         <div class="form-group">
                             <button id="saveSchedule" type="submit" class="btn btn-success text-white d-block mx-auto">
                                 <i class="fas fa-plus"></i> Add Schedule</button>
@@ -70,7 +58,6 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                        {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
                     </div>
                 </div>
             </div>
@@ -91,10 +78,11 @@
         </div>
     </div>
 </div>
+
 @push('calendar-scripts')
 <script type="text/javascript">
     let schedules = @json($schedules);
-// console.log(schedules);
+    // console.log(schedules);
     $(document).ready(function () {
         $("#calendar").fullCalendar({
             header:{

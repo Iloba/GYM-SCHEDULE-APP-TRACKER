@@ -12,10 +12,10 @@
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com" />
         <link rel="icon" href="{{ asset('img/portal-logo.svg') }}" />
-        <link
+        {{-- <link
             href="https://fonts.googleapis.com/css?family=Nunito"
             rel="stylesheet"
-        />
+        /> --}}
         <link
             rel="stylesheet"
             href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"

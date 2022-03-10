@@ -42,12 +42,13 @@
                                         {{ $workout->workout_name }}
                                     </h4>
                                     <p class="text-center">
-                                        <i
-                                            >Type:
-                                            {{ $workout->workout_type }}</i
-                                        >
+                                       
+                                            Type:
+                                            {{ $workout->workout_type }}
+                                        
                                         <br />
-                                        See more.... 
+                                        See more.... <br>
+                                        <small>Added by: {{ $workout->user->name}}</small>
                                        
                                     </p>
                                 </a>
