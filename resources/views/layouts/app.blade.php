@@ -6,8 +6,13 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="description" content="A workout Scheduling APP" />
+    <meta name="robots" content="A workout Schdule app" />
+    <meta name="googlebot" content="A workout Schdule app" />
+    <meta name="author" content="ROOAH LLC" />
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="icon" href="{{ asset('img/portal-logo.svg') }}">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
