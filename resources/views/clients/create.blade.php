@@ -21,6 +21,7 @@
                                     name="name"
                                     class="form-control"
                                     placeholder="name..."
+                                    value="{{ old('name') }}"
                                 />
                                 @error('name')
                                 <span class="text-danger">{{ $message }}</span>
@@ -33,6 +34,7 @@
                                     name="phone"
                                     class="form-control"
                                     placeholder="phone..."
+                                    value="{{ old('phone') }}"
                                 />
                                 @error('phone')
                                 <span class="text-danger">{{ $message }}</span>
@@ -45,6 +47,7 @@
                                     name="email"
                                     class="form-control"
                                     placeholder="email..."
+                                    value="{{ old('email') }}"
                                 />
                                 @error('email')
                                 <span class="text-danger">{{ $message }}</span>
@@ -57,6 +60,7 @@
                                     name="age"
                                     class="form-control"
                                     placeholder="age..."
+                                    value="{{ old('age') }}"
                                 />
                                 @error('age')
                                 <span class="text-danger">{{ $message }}</span>
@@ -84,6 +88,7 @@
                                     name="weight"
                                     class="form-control"
                                     placeholder="weight..."
+                                    value="{{ old('weight') }}"
                                 />
                                 @error('weight')
                                 <span class="text-danger">{{ $message }}</span>
@@ -98,6 +103,7 @@
                                     name="height"
                                     class="form-control"
                                     placeholder="height..."
+                                    value="{{ old('height') }}"
                                 />
                                 @error('height')
                                 <span class="text-danger">{{ $message }}</span>
@@ -112,6 +118,7 @@
                                     name="weight_goal"
                                     class="form-control"
                                     placeholder="weight goal..."
+                                    value="{{ old('weight_goal') }}"
                                 />
                                 @error('weight_goal')
                                 <span class="text-danger">{{ $message }}</span>
@@ -126,6 +133,7 @@
                                     name="workout_time"
                                     class="form-control"
                                     placeholder="workout time..."
+                                    value="{{ old('workout_time') }}"
                                 />
                                 @error('workout_time')
                                 <span class="text-danger">{{ $message }}</span>
@@ -140,6 +148,7 @@
                                     name="workout_time_per_week"
                                     class="form-control"
                                     placeholder="workout time per week..."
+                                    value="{{ old('workout_time_per_week') }}"
                                 />
                                 @error('workout_time_per_week')
                                 <span class="text-danger">{{ $message }}</span>
@@ -154,6 +163,7 @@
                                     name="workout_place"
                                     class="form-control"
                                     placeholder="workout Place..."
+                                    value="{{ old('workout_place') }}"
                                 />
                                 @error('workout_place')
                                 <span class="text-danger">{{ $message }}</span>
@@ -168,6 +178,7 @@
                                     name="diet_type"
                                     class="form-control"
                                     placeholder="Diet Type..."
+                                    value="{{ old('diet_type') }}"
                                 />
                                 @error('diet_type')
                                 <span class="text-danger">{{ $message }}</span>

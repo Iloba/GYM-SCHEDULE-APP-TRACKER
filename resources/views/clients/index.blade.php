@@ -80,7 +80,6 @@ referrerpolicy="no-referrer"
                                                     @method('DELETE')
                                                 </form>
                                             </div>
-
                                         </td>
                                         <td><a href="{{ route('export.client.data', $client->id) }}" class="btn btn-primary btn-sm text-white"> <i class="fa fa-file-csv"></i> Export</a></td>
                                     </tr>

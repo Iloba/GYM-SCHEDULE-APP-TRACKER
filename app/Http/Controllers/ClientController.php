@@ -9,10 +9,13 @@ use App\Models\Workout;
 use App\Models\Schedule;
 use App\Models\WorkoutMedia;
 use Illuminate\Http\Request;
+use App\Notifications\WelcomeClient;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\StoreClientRequest;
 use Spatie\SimpleExcel\SimpleExcelWriter;
+use Illuminate\Support\Facades\Notification;
 
 // use Excel;
 
@@ -55,7 +58,7 @@ class ClientController extends Controller
     public function store(StoreClientRequest $request)
     {
         $authenticatedUser = auth()->user();
-
+        $password = 'Pa$$word';
         $storeClient = $authenticatedUser->clients()->create([
             'name' => $request->name,
             'phone' => $request->phone,
@@ -69,10 +72,21 @@ class ClientController extends Controller
             'workout_time_per_week' => $request->workout_time_per_week,
             'workout_place' => $request->workout_place,
             'diet_type' => $request->diet_type,
+            'password' => $password
         ]);
 
+        // dd($storeClient);
+
+        try {
+            // $storeClient->notify(new WelcomeClient());
+            Notification::route('mail', $request->email)->notify(new WelcomeClient($request->name, $request->email, $password));
+        } catch (\Throwable $th) {
+            Session::flash('error', 'Client Created But Something went wrong Could not send mail. Please try again');
+            return redirect()->back();
+        }
+
         if ($storeClient) {
-            Session::flash('success', 'Client Created');
+            Session::flash('success', 'Client Created, Email sent to client inbox');
             return redirect()->back();
         } else {
             Session::flash('error', 'Something went wrong ');
@@ -202,7 +216,7 @@ class ClientController extends Controller
                 'Start Time' => '10:00 AM',
                 'End Date' => carbon::parse($schedule->end_date)->format('d/m/Y'),
                 'End Time' => '10:00 AM',
-                'Description' => ' Description: ' .  $description . '<br/>'. ' Link: ' . $url,
+                'Description' => ' Description: ' .  $description . '<br/>' . ' Link: ' . $url,
                 'All Day Event' => TRUE,
             ]);
         }

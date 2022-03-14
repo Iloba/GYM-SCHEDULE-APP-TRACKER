@@ -22,6 +22,7 @@ class CreateClientsTable extends Migration
             $table->string('age');
             $table->string('gender');
             $table->string('sex');
+            $table->string('password');
             $table->string('weight');
             $table->string('height');
             $table->string('weight_goal');

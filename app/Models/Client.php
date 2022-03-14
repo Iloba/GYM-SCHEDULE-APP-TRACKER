@@ -22,6 +22,7 @@ class Client extends Model
         'workout_time_per_week',
         'workout_place',
         'diet_type',
+        'password'
     ];
 
     public function user(){
