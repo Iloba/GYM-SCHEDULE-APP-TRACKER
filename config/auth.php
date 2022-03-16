@@ -17,6 +17,11 @@ return [
         'guard' => 'web',
         'passwords' => 'users',
     ],
+      //Create New guard
+      'client' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Client::class,
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -39,6 +44,12 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+         //Specify the guard
+         'client' => [
+            'driver' => 'session',
+            'provider' => 'clients',
+           
         ],
     ],
 
@@ -64,6 +75,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        //Create Provider
+        'clients' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Client::class,
+        ]
 
         // 'users' => [
         //     'driver' => 'database',

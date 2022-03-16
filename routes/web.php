@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientAuthController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
@@ -37,3 +38,5 @@ Route::get('/workout/{id}', [ClientController::class, 'showWorkoutsToUsers'])->n
 Route::get('/export-user-workout/{id}', [ClientController::class, 'exportClientData'])->name('export.client.data');
 
 
+Route::view('/client-login', 'auth.clients.login')->name('client.login.view');
+Route::post('/client-login', [ClientAuthController::class, 'login'])->name('client.login');

@@ -47,8 +47,24 @@
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li> --}}
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                       Login
+                                    </a>
+                                    
+    
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('login') }}">
+                                            {{ __('Login As Instructor') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('client.login.view') }}">
+                                            {{ __('Login As Client') }}
+                                        </a>
+                                    </div>
+                                    
                                 </li>
                             @endif
 

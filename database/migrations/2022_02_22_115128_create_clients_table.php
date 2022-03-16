@@ -30,6 +30,7 @@ class CreateClientsTable extends Migration
             $table->string('workout_time_per_week');
             $table->string('workout_place');
             $table->string('diet_type');
+            $table->string('role');
             $table->timestamps();
         });
     }

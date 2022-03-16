@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Client extends Model
+class Client  extends Authenticatable
 {
     use HasFactory;
 
@@ -22,7 +23,8 @@ class Client extends Model
         'workout_time_per_week',
         'workout_place',
         'diet_type',
-        'password'
+        'password',
+        'role'
     ];
 
     public function user(){

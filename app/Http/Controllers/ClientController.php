@@ -10,6 +10,7 @@ use App\Models\Schedule;
 use App\Models\WorkoutMedia;
 use Illuminate\Http\Request;
 use App\Notifications\WelcomeClient;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
@@ -72,7 +73,8 @@ class ClientController extends Controller
             'workout_time_per_week' => $request->workout_time_per_week,
             'workout_place' => $request->workout_place,
             'diet_type' => $request->diet_type,
-            'password' => $password
+            'password' => Hash::make($password),
+            'role' => "CLIENT",
         ]);
 
         // dd($storeClient);
