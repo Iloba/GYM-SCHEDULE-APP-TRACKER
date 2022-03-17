@@ -31,13 +31,23 @@ class ClientAuthController extends Controller
         //Login Admin
         if (Auth::guard('client')->attempt($credentials)) {
             Session::flash('success', 'Login Successful');
-            return 'hello';
+            return redirect()->route('client.home');
         } else {
-            return redirect()->back()->with('error', 'Invalid Credentials');
+            
+            Session::flash('error', 'Invalid Login Details');
+            return redirect()->back();
         }
+    }
+
+    public function index()
+    {
+        return view('client');
     }
 
     public function logout()
     {
+        Auth::guard('client')->logout();
+        Session::flash('success', 'Logout Successful');
+        return redirect()->route('client.login.view');
     }
 }

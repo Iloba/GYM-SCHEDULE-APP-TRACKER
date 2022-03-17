@@ -14,7 +14,16 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
+        if (!$request->expectsJson()) {
+
+            //return CLient back if he tries to access admin dashboard without auth
+            if ($request->routeIs('client.*')) {
+                return route('client.login');
+            }
+
+
+
+
             return route('login');
         }
     }
