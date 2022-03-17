@@ -50,7 +50,7 @@ class WelcomeClient extends Notification
             ->line('Welcome ' . $this->username . ' You were just added on the Fit Live Well App')
             ->line('Here are your login credentials ' . 'Email: ' . $this->email . ' Password: ' .$this->password)
             ->line('Login Below. Please Change your Passwords Afterwards')
-            ->line('http://www.app.fit-livewell.com/login')
+            ->line('http://www.app.fit-livewell.com/client-login')
             ->line('Thank you for using our application!');
     }
 

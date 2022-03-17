@@ -77,10 +77,9 @@ class ClientController extends Controller
             'role' => "CLIENT",
         ]);
 
-        // dd($storeClient);
+      
 
         try {
-            // $storeClient->notify(new WelcomeClient());
             Notification::route('mail', $request->email)->notify(new WelcomeClient($request->name, $request->email, $password));
         } catch (\Throwable $th) {
             Session::flash('error', 'Client Created But Something went wrong Could not send mail. Please try again');
