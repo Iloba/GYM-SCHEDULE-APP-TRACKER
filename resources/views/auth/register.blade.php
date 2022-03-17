@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card border border-0 shadow">
-                <div class="card-header bg-primary"><h3 class="text-light">{{ __('Register') }}</h3></div>
+                <div class="card-header bg-primary"><h3 class="text-light">{{ __('Register as an Instructor') }}</h3></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -60,6 +60,23 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+
+                        <div class="form-group mb-3">
+                            <label for="secretkey" class="col-md-4 col-form-label ">{{ __('Secret Key') }}</label>
+
+                            <div class="">
+                                <input  type="password" class="form-control @error('key') is-invalid @enderror" name="key"  required>
+
+                                @error('key')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                        
 
                         <div class="form-group mb-0">
                             <div class=" ">
