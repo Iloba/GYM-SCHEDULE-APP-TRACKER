@@ -40,7 +40,7 @@ class ClientDashboardController extends Controller
         $schedules = Schedule::where('client', auth('client')->user()->id)->get();
 
         if (!$schedules->count() > 0) {
-            Session::flash('error', 'No Schedules for this Client');
+            Session::flash('error', 'No Schedules has been added for you');
             return redirect()->back();
         }
 

@@ -239,4 +239,35 @@ class ClientController extends Controller
             'images' => $images
         ]);
     }
+
+    public function updatePassword(Request $request, $id)
+    {
+        //Validate Request
+        $request->validate([
+            'old_password' => 'required',
+            'password' => 'required|confirmed|min:8',
+            'password_confirmation' => 'required|min:8',
+        ]);
+
+        //Find User else return error
+        $user =  Client::where('id', $id)->firstorFail();
+
+        // dd($user);
+
+        //Confirm if Old Password Matches User Password
+        if (!password_verify($request->old_password, $user->password)) {
+
+            Session::flash('error', 'Old Password Does not Match our Records');
+            return back();
+        }
+
+        // dd('hello');
+
+        //Update Password
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        Session::flash('success', 'Password Update Successful');
+        return back();
+    }
 }

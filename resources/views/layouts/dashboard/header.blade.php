@@ -32,7 +32,7 @@
 
     <body>
         <main class="py-4">@yield('body-of-dashboard')</main>
-
+        
         <script
             src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -88,6 +88,14 @@
         <script>
             toastr.error("{!! Session::get('error') !!}");
         </script>
+        @endif
+
+        @if ($errors->any())
+        @foreach ($errors->all() as $error)
+        <script>
+            toastr.error("{!! $error !!}")
+        </script>
+        @endforeach
         @endif
     </body>
 </html>

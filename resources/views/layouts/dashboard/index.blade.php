@@ -179,28 +179,7 @@
                                 <!--//dropdown-menu-->
                             </div>
                             <!--//app-utility-item-->
-                            <div class="app-utility-item">
-                                <a href="" title="Settings">
-                                    <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                                    <svg
-                                        width="1em"
-                                        height="1em"
-                                        viewBox="0 0 16 16"
-                                        class="bi bi-gear icon"
-                                        fill="currentColor"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            fill-rule="evenodd"
-                                            d="M8.837 1.626c-.246-.835-1.428-.835-1.674 0l-.094.319A1.873 1.873 0 0 1 4.377 3.06l-.292-.16c-.764-.415-1.6.42-1.184 1.185l.159.292a1.873 1.873 0 0 1-1.115 2.692l-.319.094c-.835.246-.835 1.428 0 1.674l.319.094a1.873 1.873 0 0 1 1.115 2.693l-.16.291c-.415.764.42 1.6 1.185 1.184l.292-.159a1.873 1.873 0 0 1 2.692 1.116l.094.318c.246.835 1.428.835 1.674 0l.094-.319a1.873 1.873 0 0 1 2.693-1.115l.291.16c.764.415 1.6-.42 1.184-1.185l-.159-.291a1.873 1.873 0 0 1 1.116-2.693l.318-.094c.835-.246.835-1.428 0-1.674l-.319-.094a1.873 1.873 0 0 1-1.115-2.692l.16-.292c.415-.764-.42-1.6-1.185-1.184l-.291.159A1.873 1.873 0 0 1 8.93 1.945l-.094-.319zm-2.633-.283c.527-1.79 3.065-1.79 3.592 0l.094.319a.873.873 0 0 0 1.255.52l.292-.16c1.64-.892 3.434.901 2.54 2.541l-.159.292a.873.873 0 0 0 .52 1.255l.319.094c1.79.527 1.79 3.065 0 3.592l-.319.094a.873.873 0 0 0-.52 1.255l.16.292c.893 1.64-.902 3.434-2.541 2.54l-.292-.159a.873.873 0 0 0-1.255.52l-.094.319c-.527 1.79-3.065 1.79-3.592 0l-.094-.319a.873.873 0 0 0-1.255-.52l-.292.16c-1.64.893-3.433-.902-2.54-2.541l.159-.292a.873.873 0 0 0-.52-1.255l-.319-.094c-1.79-.527-1.79-3.065 0-3.592l.319-.094a.873.873 0 0 0 .52-1.255l-.16-.292c-.892-1.64.902-3.433 2.541-2.54l.292.159a.873.873 0 0 0 1.255-.52l.094-.319z"
-                                        />
-                                        <path
-                                            fill-rule="evenodd"
-                                            d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z"
-                                        />
-                                    </svg>
-                                </a>
-                            </div>
+                           
                             <!--//app-utility-item-->
 
                             <div
@@ -228,9 +207,11 @@
                                         >
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href=""
-                                            >Settings</a
-                                        >
+                                        <button type="button"
+                                            class="btn btn-danger d-block mx-auto text-light btn-sm btn-block"
+                                            data-toggle="modal" data-target="#exampleModal">
+                                            Change Password
+                                        </button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider" />
@@ -425,6 +406,45 @@
     <!--//app-header-->
     <div class="m-2 p-2">
         @yield('content')
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('update.password', auth()->user()->id) }}" method="POST">
+                        @csrf
+                        <div class="form-group mb-3">
+                            <label for="">Old Password</label>
+                            <input type="password" name="old_password" class="form-control" placeholder="Enter New Password" required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="">New Password</label>
+                            <input type="password" name="password" class="form-control" placeholder="Enter Old Password" required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="">Confirm New Password</label>
+                            <input type="password" name="password_confirmation" class="form-control" placeholder="confirm New Password" required>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary"> Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
     <!--//app-wrapper-->
     <footer class="app-footer">
