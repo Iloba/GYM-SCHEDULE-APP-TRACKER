@@ -57,5 +57,4 @@ Route::middleware(['auth:client'])->group(function () {
     Route::get('/my-workouts', [ClientDashboardController::class, 'displayCalendarWithSchedules'])->name('client.calendar');
     Route::get('/export-clients-workout', [ClientDashboardController::class, 'exportClientData'])->name('export.client.workouts');
     Route::post('/update-Password/{id}', [ClientController::class, 'updatePassword'])->name('update.password');
-  
 });

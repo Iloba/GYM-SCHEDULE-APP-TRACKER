@@ -175,8 +175,8 @@
             <div class="sidepanel-inner d-flex flex-column">
                 <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
                 <div class="app-branding">
-                    <a class="app-logo" href=""><img class="logo-icon me-2" src="{{ asset('img/portal-logo.svg') }}"
-                            alt="logo" /><span class="logo-text">FITNESS APP</span></a>
+                    <a class="" href=""><img class="" src="{{ asset('img/portal-logo.png') }}"
+                            alt="logo" /></a>
                 </div>
                 <!--//app-branding-->
 

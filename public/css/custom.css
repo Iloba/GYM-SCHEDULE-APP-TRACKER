@@ -4,8 +4,8 @@
 }
 .home-page-bg{
     background:   url("../img/excercise-bg.jpg"); 
+    background-position: right right;
     background-size: cover;
-    background-position:left center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     min-height: 100vh;

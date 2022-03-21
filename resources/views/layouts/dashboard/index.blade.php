@@ -258,12 +258,12 @@
                     >&times;</a
                 >
                 <div class="app-branding">
-                    <a class="app-logo" href=""
+                    <a class="" href=""
                         ><img
-                            class="logo-icon me-2"
-                            src="{{ asset('img/portal-logo.svg') }}"
+                            class=" me-2"
+                            src="{{ asset('img/portal-logo.png') }}"
                             alt="logo"
-                        /><span class="logo-text">FITNESS APP</span></a
+                        /></a
                     >
                 </div>
                 <!--//app-branding-->
