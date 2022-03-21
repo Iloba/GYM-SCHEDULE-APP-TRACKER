@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Client;
 use App\Models\Workout;
 use App\Models\Schedule;
@@ -77,7 +78,7 @@ class ClientController extends Controller
             'role' => "CLIENT",
         ]);
 
-      
+
 
         try {
             Notification::route('mail', $request->email)->notify(new WelcomeClient($request->name, $request->email, $password));
@@ -198,7 +199,7 @@ class ClientController extends Controller
 
     public function exportClientData($id)
     {
-        $schedules = Schedule::where('client', $id)->get();
+        $schedules = Schedule::where('client_id', $id)->get();
 
         if (!$schedules->count() > 0) {
             Session::flash('error', 'No Schedules for this Client');
@@ -207,7 +208,7 @@ class ClientController extends Controller
 
         $writer = SimpleExcelWriter::streamDownload('schedule.csv', 'csv');
         foreach ($schedules as $schedule) {
-            $clientName = Client::find($schedule->client)->name;
+            $clientName = Client::find($schedule->client_id)->name;
             $description = Workout::find($schedule->workout)->description;
             $subject = Workout::find($schedule->workout)->workout_name;
             $url = route('user.workouts.show', Crypt::encrypt($schedule->workout));
@@ -242,6 +243,7 @@ class ClientController extends Controller
 
     public function updatePassword(Request $request, $id)
     {
+        $user = null;
         //Validate Request
         $request->validate([
             'old_password' => 'required',
@@ -252,6 +254,37 @@ class ClientController extends Controller
         //Find User else return error
         $user =  Client::where('id', $id)->firstorFail();
 
+
+
+        //Confirm if Old Password Matches User Password
+        if (!password_verify($request->old_password, $user->password)) {
+
+            Session::flash('error', 'Old Password Does not Match our Records');
+            return back();
+        }
+
+        // dd('hello');
+
+        //Update Password
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        Session::flash('success', 'Password Update Successful');
+        return back();
+    }
+
+    public function updateInstructorPassword(Request $request, $id)
+    {
+    
+        //Validate Request
+        $request->validate([
+            'old_password' => 'required',
+            'password' => 'required|confirmed|min:8',
+            'password_confirmation' => 'required|min:8',
+        ]);
+
+        //Find User else return error
+        $user =  User::where('id', $id)->firstorFail();
         // dd($user);
 
         //Confirm if Old Password Matches User Password

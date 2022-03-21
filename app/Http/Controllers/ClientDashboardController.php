@@ -18,7 +18,7 @@ class ClientDashboardController extends Controller
 
 
         $schedules = array();
-        $allSchedules = Schedule::where('client', auth('client')->user()->id)->get();
+        $allSchedules = Schedule::where('client_id', auth('client')->user()->id)->get();
 
         foreach ($allSchedules as $schedule) {
             $schedules[] = [
@@ -37,7 +37,7 @@ class ClientDashboardController extends Controller
 
     public function exportClientData()
     {
-        $schedules = Schedule::where('client', auth('client')->user()->id)->get();
+        $schedules = Schedule::where('client_id', auth('client')->user()->id)->get();
 
         if (!$schedules->count() > 0) {
             Session::flash('error', 'No Schedules has been added for you');
@@ -46,7 +46,7 @@ class ClientDashboardController extends Controller
 
         $writer = SimpleExcelWriter::streamDownload('schedule.csv', 'csv');
         foreach ($schedules as $schedule) {
-            $clientName = Client::find($schedule->client)->name;
+            $clientName = Client::find($schedule->client_id)->name;
             $description = Workout::find($schedule->workout)->description;
             $subject = Workout::find($schedule->workout)->workout_name;
             $url = route('user.workouts.show', Crypt::encrypt($schedule->workout));

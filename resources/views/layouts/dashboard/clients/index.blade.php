@@ -136,7 +136,7 @@
 
                                         <!-- Button trigger modal -->
                                         <button type="button"
-                                            class="btn btn-danger d-block mx-auto text-light btn-sm btn-block"
+                                            class="btn btn-danger d-block mx-auto text-white btn-sm btn-block"
                                             data-toggle="modal" data-target="#exampleModal">
                                             Change Password
                                         </button>

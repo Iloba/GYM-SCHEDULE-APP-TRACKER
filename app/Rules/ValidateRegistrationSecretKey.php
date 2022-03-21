@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Models\AdminSecretKey;
 use Illuminate\Contracts\Validation\Rule;
 
 class ValidateRegistrationSecretKey implements Rule
@@ -25,7 +26,11 @@ class ValidateRegistrationSecretKey implements Rule
      */
     public function passes($attribute, $value)
     {
-     return $value === 'FitLive00well';
+        $secretKey = AdminSecretKey::all();
+        foreach ($secretKey as $adminkey) {
+
+            return $value ===  $adminkey->key;
+        }
     }
 
     /**

@@ -150,5 +150,6 @@
         <!--//container-fluid-->
     </div>
     <!--//app-content-->
+    
 </div>
 @endsection

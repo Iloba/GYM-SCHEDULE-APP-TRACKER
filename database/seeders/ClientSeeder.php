@@ -6,6 +6,7 @@ use App\Models\Client;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 
 
@@ -22,10 +23,10 @@ class ClientSeeder extends Seeder
       
     
         //Insert 100 records into the db
-        for($i=0; $i<20; $i++){
+        for($i=0; $i<10; $i++){
             $clients[] = [
                 'user_id' => 1,
-                'name' => Str::random('name'),
+                'name' => Str::random(5),
                 'phone' => Str::random(10),
                 'email' => Str::random(10).'@gmail.com',
                 'age' => Str::random(2),
@@ -37,6 +38,8 @@ class ClientSeeder extends Seeder
                 'workout_time_per_week' => Str::random(5),
                 'workout_place' => Str::random(3),
                 'diet_type' => Str::random(3),
+                'password' => Hash::make('Pa$$word'),
+                'role' => 'CLIENT',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ];

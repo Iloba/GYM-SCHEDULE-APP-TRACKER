@@ -37,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('update-on-click/{id}', [ScheduleController::class, 'updateOnClick'])->name('update.on.click');
     Route::delete('delete-on-click/{id}', [ScheduleController::class, 'deleteOnClick'])->name('delete.on.click');
     Route::get('/workout/{id}', [ClientController::class, 'showWorkoutsToUsers'])->name('user.workouts.show');
+    Route::post('/update-instructor-Password/{id}', [ClientController::class, 'updateInstructorPassword'])->name('instructor.update.password');
 });
 
 
@@ -56,4 +57,5 @@ Route::middleware(['auth:client'])->group(function () {
     Route::get('/my-workouts', [ClientDashboardController::class, 'displayCalendarWithSchedules'])->name('client.calendar');
     Route::get('/export-clients-workout', [ClientDashboardController::class, 'exportClientData'])->name('export.client.workouts');
     Route::post('/update-Password/{id}', [ClientController::class, 'updatePassword'])->name('update.password');
+  
 });

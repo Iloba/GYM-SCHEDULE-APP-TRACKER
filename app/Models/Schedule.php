@@ -11,7 +11,7 @@ class Schedule extends Model
 
     protected $fillable = [
         'user_id',
-        'client',
+        'client_id',
         'workout',
         'start_date',
         'end_date',
@@ -19,5 +19,9 @@ class Schedule extends Model
 
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function clients(){
+        return $this->hasMany(Client::class);
     }
 }

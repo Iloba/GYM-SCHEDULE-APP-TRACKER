@@ -208,7 +208,7 @@
                                     </li>
                                     <li>
                                         <button type="button"
-                                            class="btn btn-danger d-block mx-auto text-light btn-sm btn-block"
+                                            class="btn btn-danger d-block mx-auto text-white btn-sm btn-block"
                                             data-toggle="modal" data-target="#exampleModal">
                                             Change Password
                                         </button>
@@ -417,7 +417,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('update.password', auth()->user()->id) }}" method="POST">
+                    <form action="{{ route('instructor.update.password', auth()->user()->id) }}" method="POST">
                         @csrf
                         <div class="form-group mb-3">
                             <label for="">Old Password</label>
@@ -499,6 +499,14 @@
      <script>
          toastr.error("{!! Session::get('error') !!}");
      </script>
+     @endif
+
+     @if ($errors->any())
+     @foreach ($errors->all() as $error)
+     <script>
+         toastr.error("{!! $error !!}")
+     </script>
+     @endforeach
      @endif
 </body>
 

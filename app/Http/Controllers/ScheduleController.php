@@ -22,12 +22,14 @@ class ScheduleController extends Controller
 
         $schedules = array();
         $allSchedules = Schedule::where('user_id', auth()->user()->id)->get();
+
+    //    dd($allSchedules);
         // $clientName = Client::where('id', $schedule->client)->get();
         // dd($clientName);
         foreach ($allSchedules as $schedule) {
             $schedules[] = [
                 'id' => $schedule->id,
-                'title' => Client::find($schedule->client)->name,
+                'title' => Client::find($schedule->client_id)->name,
                 'start' => $schedule->start_date,
                 'end' => $schedule->end_date,
             ];
@@ -78,7 +80,7 @@ class ScheduleController extends Controller
 
         $schedule = new Schedule;
         $schedule->user_id = auth()->user()->id;
-        $schedule->client = $request->client;
+        $schedule->client_id = $request->client;
         $schedule->workout = $request->workout;
         $schedule->start_date = $request->start_date;
         $schedule->end_date = $request->start_date;
@@ -104,7 +106,7 @@ class ScheduleController extends Controller
 
         $schedule = Schedule::create([
             'user_id' => $request->userId,
-            'client' =>  $request->client,
+            'client_id' =>  $request->client,
             'workout' =>  $request->workout,
             'start_date' =>  $request->startDate,
             'end_date' =>   $request->endDate
