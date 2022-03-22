@@ -3,7 +3,7 @@
     font-family: 'Poppins', sans-serif;
 }
 .home-page-bg{
-    background:   url("../img/excercise-bg.jpg"); 
+    animation: animate 25s ease-in-out infinite;
     background-position: right right;
     background-size: cover;
     background-repeat: no-repeat;
@@ -11,6 +11,20 @@
     min-height: 100vh;
   
     
+}
+@keyframes animate{
+    0%, 100%{
+        background-image: url('../img/1bg.jpg');
+    }
+    25%{
+        background-image: url('../img/2bg.jpg');
+    }
+    50%{
+        background-image: url('../img/3bg.jpg');
+    }
+    75%{
+        background-image: url('../img/4bg.jpg');
+    }
 }
 label{
     font-weight: bold;

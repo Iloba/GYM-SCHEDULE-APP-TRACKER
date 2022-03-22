@@ -26,7 +26,7 @@ class StoreClientRequest extends FormRequest
         return [
             'name' => 'required',
             'phone' => 'required|min:10',
-            'email' => 'required',
+            'email' => 'required|unique:clients',
             'age' => 'required',
             'gender' => 'required',
             'weight' => 'required',
@@ -36,6 +36,13 @@ class StoreClientRequest extends FormRequest
             'workout_time_per_week' => 'required',
             'workout_place' => 'required',
             'diet_type' => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'email.unique' => 'This Email already Exists'
         ];
     }
 }
