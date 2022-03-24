@@ -159,7 +159,7 @@
                                     ><b>Workout Place</b></label
                                 >
                                 <input
-                                    type="number"
+                                    type="text"
                                     name="workout_place"
                                     class="form-control"
                                     placeholder="workout Place..."
@@ -174,7 +174,7 @@
                                     ><b>Diet Type</b></label
                                 >
                                 <input
-                                    type="number"
+                                    type="text"
                                     name="diet_type"
                                     class="form-control"
                                     placeholder="Diet Type..."

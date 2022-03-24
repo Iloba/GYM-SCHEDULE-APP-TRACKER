@@ -46,11 +46,12 @@ class WelcomeClient extends Notification
      */
     public function toMail($notifiable)
     {
+        
         return (new MailMessage)
             ->line('Welcome ' . $this->username . ' You were just added on the Fit Live Well App')
             ->line('Here are your login credentials ' . 'Email: ' . $this->email . ' Password: ' .$this->password)
             ->line('Login Below. Please Change your Passwords Afterwards')
-            ->line('http://www.app.fit-livewell.com/client-login')
+            ->action('Login', route('client.login.view'))
             ->line('Thank you for using our application!');
     }
 

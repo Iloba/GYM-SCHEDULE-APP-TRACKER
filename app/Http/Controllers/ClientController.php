@@ -19,8 +19,6 @@ use App\Http\Requests\StoreClientRequest;
 use Spatie\SimpleExcel\SimpleExcelWriter;
 use Illuminate\Support\Facades\Notification;
 
-// use Excel;
-
 class ClientController extends Controller
 {
 
@@ -47,7 +45,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+
         return view('clients.create');
     }
 
@@ -143,7 +141,7 @@ class ClientController extends Controller
 
         $client = Client::find($client->id);
 
-        // dd($client->user->id);
+
         //GUARD CLAUSE
         if ($client->user_id !== auth()->user()->id) {
             Session::flash('error', 'You are not authorized for this Action');
@@ -192,6 +190,9 @@ class ClientController extends Controller
         }
 
         $client->delete();
+
+        // $schedules = Schedule::where('client_id', $client->id);
+        // $schedules->delete();
 
         Session::flash('success', 'Client Deleted');
         return redirect()->back();
@@ -243,7 +244,6 @@ class ClientController extends Controller
 
     public function updatePassword(Request $request, $id)
     {
-        $user = null;
         //Validate Request
         $request->validate([
             'old_password' => 'required',
@@ -263,7 +263,7 @@ class ClientController extends Controller
             return back();
         }
 
-        // dd('hello');
+
 
         //Update Password
         $user->password = Hash::make($request->password);
@@ -275,7 +275,7 @@ class ClientController extends Controller
 
     public function updateInstructorPassword(Request $request, $id)
     {
-    
+
         //Validate Request
         $request->validate([
             'old_password' => 'required',
