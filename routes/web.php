@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\ClientAuthController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\ClientController;
-use App\Http\Controllers\ClientDashboardController;
-use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\WorkoutController;
+use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\ClientAuthController;
+use App\Http\Controllers\ClientDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,3 +59,24 @@ Route::middleware(['auth:client'])->group(function () {
     Route::get('/export-clients-workout', [ClientDashboardController::class, 'exportClientData'])->name('export.client.workouts');
     Route::post('/update-Password/{id}', [ClientController::class, 'updatePassword'])->name('update.password');
 });
+
+Route::get('/route-cache', function() {
+    $exitCode = Artisan::call('route:clear');
+    return 'Routes cache cleared';
+});
+
+Route::get('/config-clear', function() {
+    $exitCode = Artisan::call('config:clear');
+    return 'Config cache cleared';
+});
+
+ Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('cache:clear');
+    return 'Application cache cleared';
+});
+
+Route::get('/view-clear', function() {
+    $exitCode = Artisan::call('view:clear');
+    return 'View cache cleared';
+});
+
