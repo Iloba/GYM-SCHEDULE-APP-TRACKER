@@ -25,7 +25,7 @@
                     <div class="modal-body">
                         <input type="text" class="d-none" value="{{  $user_id }}" id="user_id">
                         <div class="form-group mb-3">
-                            <label for="name"><b>Client</b></label>
+                            <label for="name"><b>Select Client</b></label>
                             <select name="client_name" id="client_id" class="form-control">
                                 @forelse ($clients as $client)
                                 <option value="{{ $client->id }}">{{ $client->name }}</option>
@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="workout"><b>Workout</b></label>
+                            <label for="workout"><b>Select Workout</b></label>
                             <select name="workout_type" id="workout" class="form-control" id="">
                                 @foreach ($workouts as $workout)
                                 <option value="{{ $workout->id  }}">{{ $workout->workout_name }}</option>

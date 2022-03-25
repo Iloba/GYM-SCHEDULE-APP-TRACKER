@@ -98,7 +98,7 @@
                         </div>
                         <!--//app-card-body-->
                         <div class="app-card-footer p-4 mt-auto">
-                            <a class="btn app-btn-secondary" href="{{ route('schedules.create') }}">Create New</a>
+                            <a class="btn app-btn-secondary" href="{{ route('schedules.index') }}">Create New</a>
                         </div>
                         <!--//app-card-footer-->
                     </div>

@@ -26,6 +26,7 @@
                                     name="workout_name"
                                     class="form-control"
                                     placeholder="Enter Workout Name...."
+                                    value="{{ old('workout_name') }}"
                                 />
                                 @error('workout_name')
                                 <span class="text-danger">{{ $message }}</span>
@@ -42,7 +43,7 @@
                                     class="form-control"
                                     cols="30"
                                     rows="20"
-                                ></textarea>
+                                >{{ old('workout_description') }}</textarea>
                                 @error('workout_description')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -58,6 +59,7 @@
                                     name="workout_type"
                                     class="form-control"
                                     placeholder="Enter Workout Type...."
+                                    value="{{ old('workout_type') }}"
                                 />
                                 @error('workout_type')
                                 <span class="text-danger">{{ $message }}</span>
@@ -72,6 +74,7 @@
                                     name="youtube_link"
                                     class="form-control"
                                     placeholder="Enter Link to video"
+                                    value="{{ old('workout_type') }}"
                                 />
                                 @error('youtube_link')
                                 <span class="text-danger">{{ $message }}</span>

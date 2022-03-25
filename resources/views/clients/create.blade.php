@@ -82,7 +82,7 @@
                                 @enderror
                             </div>
                             <div class="form-group mb-3">
-                                <label for="weight"><b>Weight</b></label>
+                                <label for="weight"><b>Weight (LB)</b></label>
                                 <input
                                     type="number"
                                     name="weight"
@@ -97,7 +97,7 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="form-group mb-3">
-                                <label for="height"><b>Height</b></label>
+                                <label for="height"><b>Height (FT)</b></label>
                                 <input
                                     type="number"
                                     name="height"
@@ -126,7 +126,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="workout time"
-                                    ><b>Workout Time</b></label
+                                    ><b>Workout Time (HOURS PER DAY)</b></label
                                 >
                                 <input
                                     type="number"
