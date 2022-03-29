@@ -40,6 +40,11 @@
                         </div>
 
                         
+                        <div class="form-group mb-3">
+                            <div class="g-recaptcha col-md-12 ml-4" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
+                        </div>
+
+                        
 
                         <div class=" mb-0">
                             <div class="">

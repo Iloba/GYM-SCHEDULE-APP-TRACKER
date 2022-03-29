@@ -14,7 +14,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Schedule Clients</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Schedule a Session for your Clients</h5>
                         <button type="button" class="close" data-dismiss="modal" id="closeModal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -50,6 +50,14 @@
                             @enderror
                         </div>
 
+                        <div class="form-group mb-3">
+                            <label for="workout_time"><b>Select Time</b></label>
+                            <input type="time" class="form-control" name="workout_time" id="workout_time">
+                            @error('workout_type')
+                            <span id="workoutError" class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
                         <div class="form-group">
                             <button id="saveSchedule" type="submit" class="btn btn-success text-white d-block mx-auto">
                                 <i class="fas fa-plus"></i> Add Schedule</button>
@@ -64,7 +72,7 @@
             </div>
         </div>
         <div class="container-xl">
-            <h3>Schedule Clients</h3>
+            <h3>Schedule a Session for your Clients</h3>
             <div class="card shadow-sm p-3">
                 <div class="row justify-content-center mx-auto">
                     <div class="col-md-12">
@@ -102,7 +110,8 @@
                     let workout =  $('#workout').val();
                     let startDate = moment(start).format('YYYY-MM-DD');
                     let endDate = moment(end).format('YYYY-MM-DD');
-                    console.log(userId, client, workout, startDate, endDate );
+                    let workoutTime = $('#workout_time').val();
+                    console.log(userId, client, workout, startDate, endDate, workoutTime );
 
                     $.ajax({
                        
@@ -110,7 +119,7 @@
                         type: 'POST',
                         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                         dataType: 'json',
-                        data:{userId, client, workout, startDate, endDate, },
+                        data:{userId, client, workout, startDate, endDate, workoutTime},
                         success:function(response){
 
                             $('#scheduleModal').modal('hide');

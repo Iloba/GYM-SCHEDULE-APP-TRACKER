@@ -5,7 +5,7 @@
         <div class="container-xl">
             <a href="{{ route('clients.index') }}" class="btn btn-info btn-sm text-white mb-4 "><i
                     class="fas fa-arrow-left"></i></a>
-            <h3>Schedule Clients</h3>
+            <h3>Schedule a Session for your Clients</h3>
             <div class="card shadow-sm p-3">
                 <form action="{{ route('schedules.store') }}" method="POST">
                     @csrf
@@ -44,6 +44,15 @@
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
+
+                            <div class="form-group mb-3">
+                                <label for="workout_time"><b>Select Time</b></label>
+                                <input type="time" class="form-control" name="workout_time" id="">
+                                @error('workout_type')
+                                <span id="workoutError" class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+    
                            
                         </div>
                         <div class="form-group">

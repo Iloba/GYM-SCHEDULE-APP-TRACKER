@@ -26,10 +26,12 @@ class ScheduleController extends Controller
     //    dd($allSchedules);
         // $clientName = Client::where('id', $schedule->client)->get();
         // dd($clientName);
+        
         foreach ($allSchedules as $schedule) {
+            $time = $schedule->workout_time;
             $schedules[] = [
                 'id' => $schedule->id,
-                'title' => Client::find($schedule->client_id)->name,
+                'title' => $time. ' '. Client::find($schedule->client_id)->name,
                 'start' => $schedule->start_date,
                 'end' => $schedule->end_date,
             ];
@@ -74,6 +76,7 @@ class ScheduleController extends Controller
             'client' => 'required',
             'workout' => 'required',
             'start_date' => 'required',
+            'workout_time' => 'required',
 
         ]);
 
@@ -84,6 +87,7 @@ class ScheduleController extends Controller
         $schedule->workout = $request->workout;
         $schedule->start_date = $request->start_date;
         $schedule->end_date = $request->start_date;
+        $schedule->workout_time = $request->workout_time;
 
         $schedule->save();
 
@@ -100,6 +104,7 @@ class ScheduleController extends Controller
             'workout' => 'required',
             'startDate' => 'required',
             'endDate' => 'required',
+            'workoutTime' => 'required',
 
         ]);
 
@@ -109,7 +114,8 @@ class ScheduleController extends Controller
             'client_id' =>  $request->client,
             'workout' =>  $request->workout,
             'start_date' =>  $request->startDate,
-            'end_date' =>   $request->endDate
+            'end_date' =>   $request->endDate,
+            'workout_time' => $request->workoutTime
         ]);
 
         return response()->json('Schedule Created');

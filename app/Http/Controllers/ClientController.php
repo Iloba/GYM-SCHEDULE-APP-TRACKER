@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Client;
 use App\Models\Workout;
 use App\Models\Schedule;
+use Illuminate\Support\Str;
 use App\Models\WorkoutMedia;
 use Illuminate\Http\Request;
 use App\Notifications\WelcomeClient;
@@ -58,7 +59,7 @@ class ClientController extends Controller
     public function store(StoreClientRequest $request)
     {
         $authenticatedUser = auth()->user();
-        $password = 'Pa$$word';
+        $password = Str::random('8');
         $storeClient = $authenticatedUser->clients()->create([
             'name' => $request->name,
             'phone' => $request->phone,

@@ -66,32 +66,8 @@ class WorkoutController extends Controller
         $workout->youtube_link = $request->youtube_link;
 
         $workout->save();
+        
         //Handle Images
-        // $images = $request->file('workout_image');
-
-        // foreach ($images as $image) {
-
-        //     //Get Name
-        //     $imageName = time() . $image->getClientOriginalName();
-
-        //     //Resize Image
-        //     $img = Image::make($image)->fit(500)->encode();
-
-
-        //     //Save with Filename
-        //     Storage::put($imageName, $img);
-
-        //     //Move file to location
-        //     Storage::move($imageName, 'public/workout_images/' . $imageName);
-
-
-        //     $workoutImage = new WorkoutMedia;
-        //     $workoutImage->workout_id = $workout->id;
-        //     $workoutImage->media_type = 'image';
-        //     $workoutImage->image_url =  $imageName;
-        //     $workoutImage->save();
-        // }
-
         $this->uploadMultipleImages($request, $workout->id);
 
         Session::flash('success', 'Workout Created');
@@ -179,30 +155,6 @@ class WorkoutController extends Controller
 
 
         // //Upload new images
-        // $images = $request->file('workout_image');
-
-        // foreach ($images as $image) {
-
-        //     //Get Name
-        //     $imageName = time() . $image->getClientOriginalName();
-
-        //     //Resize Image
-        //     $img = Image::make($image)->fit(500)->encode();
-
-
-        //     //Save with Filename
-        //     Storage::put($imageName, $img);
-
-        //     //Move file to location
-        //     Storage::move($imageName, 'public/workout_images/' . $imageName);
-
-
-        //     $workoutImage = new WorkoutMedia;
-        //     $workoutImage->workout_id = $workout->id;
-        //     $workoutImage->media_type = 'image';
-        //     $workoutImage->image_url =  $imageName;
-        //     $workoutImage->save();
-        // }
         $this->uploadMultipleImages($request,  $workout->id);
 
         Session::flash('success', 'Workout Updated');

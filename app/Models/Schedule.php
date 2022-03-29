@@ -15,6 +15,7 @@ class Schedule extends Model
         'workout',
         'start_date',
         'end_date',
+        'workout_time'
     ];
 
     public function user(){
