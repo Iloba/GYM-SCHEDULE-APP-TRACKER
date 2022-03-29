@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Storage;
 class WorkoutController extends Controller
 {
 
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -54,7 +54,6 @@ class WorkoutController extends Controller
             'workout_type' => 'required',
             'workout_image' => 'required|mimes:jpg,png,gif|max:1024',
             'workout_description' => 'required',
-            'youtube_link' => 'required',
             'workout_image' => 'required'
         ]);
 
@@ -126,9 +125,17 @@ class WorkoutController extends Controller
      * @param  \App\Models\Workout  $workout
      * @return \Illuminate\Http\Response
      */
-    public function edit(Workout $workout)
+    public function edit($id)
     {
-        //
+
+
+        $id = crypt::decrypt($id);
+
+        $workout = Workout::find($id);
+
+        return view('workouts.edit', [
+            'workout' => $workout
+        ]);
     }
 
     /**
@@ -138,9 +145,65 @@ class WorkoutController extends Controller
      * @param  \App\Models\Workout  $workout
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Workout $workout)
+    public function update(Request $request, $id)
     {
-        //
+
+        $request->validate([
+            'workout_name' => 'required',
+            'workout_type' => 'required',
+            'workout_image' => 'required|mimes:jpg,png,gif|max:1024',
+            'workout_description' => 'required',
+            'workout_image' => 'required'
+        ]);
+
+
+        $workout = Workout::find($id);
+
+        $workout->user_id = auth()->user()->id;
+        $workout->workout_name = $request->workout_name;
+        $workout->workout_type = $request->workout_type;
+        $workout->description = $request->workout_description;
+        $workout->youtube_link = $request->youtube_link;
+        $workout->save();
+
+
+        //Handle Images
+
+        //Delete all other images before uploading new ones
+        $formerImages = Workoutmedia::where('workout_id', $id)->get();
+        foreach ($formerImages as $oldImage) {
+            $oldImage->delete();
+        }
+
+
+        //Upload new images
+        $images = $request->file('workout_image');
+
+        foreach ($images as $image) {
+
+            //Get Name
+            $imageName = time() . $image->getClientOriginalName();
+
+            //Resize Image
+            $img = Image::make($image)->fit(500)->encode();
+
+
+            //Save with Filename
+            Storage::put($imageName, $img);
+
+            //Move file to location
+            Storage::move($imageName, 'public/workout_images/' . $imageName);
+
+
+            $workoutImage = new WorkoutMedia;
+            $workoutImage->workout_id = $workout->id;
+            $workoutImage->media_type = 'image';
+            $workoutImage->image_url =  $imageName;
+            $workoutImage->save();
+        }
+
+        Session::flash('success', 'Workout Updated');
+        return redirect()->back();
     }
 
     /**

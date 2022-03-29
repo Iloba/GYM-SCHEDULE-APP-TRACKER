@@ -258,7 +258,7 @@
                     >&times;</a
                 >
                 <div class="app-branding">
-                    <a class="" href=""
+                    <a class="" href="{{ route('home') }}"
                         ><img
                             class=" me-2"
                             src="{{ asset('img/portal-logo.png') }}"

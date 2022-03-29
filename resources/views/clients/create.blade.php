@@ -111,7 +111,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="weight goal"
-                                    ><b>Weight Goal</b></label
+                                    ><b>Weight Goal (LB)</b></label
                                 >
                                 <input
                                     type="number"

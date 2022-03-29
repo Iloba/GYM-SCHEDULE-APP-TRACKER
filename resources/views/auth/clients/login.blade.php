@@ -39,19 +39,23 @@
                             </div>
                         </div>
 
+                        <div class="form-group mb-3">
+                            <div class="g-recaptcha col-md-12 ml-4" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
+                        </div>
                         
 
+                
                         <div class=" mb-0">
                             <div class="">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
 
-                                @if (Route::has('password.request'))
+                                {{-- @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
-                                @endif
+                                @endif --}}
                             </div>
                         </div>
                     </form>
