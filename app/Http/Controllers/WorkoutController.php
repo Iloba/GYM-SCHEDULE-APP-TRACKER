@@ -67,30 +67,32 @@ class WorkoutController extends Controller
 
         $workout->save();
         //Handle Images
-        $images = $request->file('workout_image');
+        // $images = $request->file('workout_image');
 
-        foreach ($images as $image) {
+        // foreach ($images as $image) {
 
-            //Get Name
-            $imageName = time() . $image->getClientOriginalName();
+        //     //Get Name
+        //     $imageName = time() . $image->getClientOriginalName();
 
-            //Resize Image
-            $img = Image::make($image)->fit(500)->encode();
-
-
-            //Save with Filename
-            Storage::put($imageName, $img);
-
-            //Move file to location
-            Storage::move($imageName, 'public/workout_images/' . $imageName);
+        //     //Resize Image
+        //     $img = Image::make($image)->fit(500)->encode();
 
 
-            $workoutImage = new WorkoutMedia;
-            $workoutImage->workout_id = $workout->id;
-            $workoutImage->media_type = 'image';
-            $workoutImage->image_url =  $imageName;
-            $workoutImage->save();
-        }
+        //     //Save with Filename
+        //     Storage::put($imageName, $img);
+
+        //     //Move file to location
+        //     Storage::move($imageName, 'public/workout_images/' . $imageName);
+
+
+        //     $workoutImage = new WorkoutMedia;
+        //     $workoutImage->workout_id = $workout->id;
+        //     $workoutImage->media_type = 'image';
+        //     $workoutImage->image_url =  $imageName;
+        //     $workoutImage->save();
+        // }
+
+        $this->uploadMultipleImages($request, $workout->id);
 
         Session::flash('success', 'Workout Created');
         return redirect()->back();
@@ -176,31 +178,32 @@ class WorkoutController extends Controller
         }
 
 
-        //Upload new images
-        $images = $request->file('workout_image');
+        // //Upload new images
+        // $images = $request->file('workout_image');
 
-        foreach ($images as $image) {
+        // foreach ($images as $image) {
 
-            //Get Name
-            $imageName = time() . $image->getClientOriginalName();
+        //     //Get Name
+        //     $imageName = time() . $image->getClientOriginalName();
 
-            //Resize Image
-            $img = Image::make($image)->fit(500)->encode();
-
-
-            //Save with Filename
-            Storage::put($imageName, $img);
-
-            //Move file to location
-            Storage::move($imageName, 'public/workout_images/' . $imageName);
+        //     //Resize Image
+        //     $img = Image::make($image)->fit(500)->encode();
 
 
-            $workoutImage = new WorkoutMedia;
-            $workoutImage->workout_id = $workout->id;
-            $workoutImage->media_type = 'image';
-            $workoutImage->image_url =  $imageName;
-            $workoutImage->save();
-        }
+        //     //Save with Filename
+        //     Storage::put($imageName, $img);
+
+        //     //Move file to location
+        //     Storage::move($imageName, 'public/workout_images/' . $imageName);
+
+
+        //     $workoutImage = new WorkoutMedia;
+        //     $workoutImage->workout_id = $workout->id;
+        //     $workoutImage->media_type = 'image';
+        //     $workoutImage->image_url =  $imageName;
+        //     $workoutImage->save();
+        // }
+        $this->uploadMultipleImages($request,  $workout->id);
 
         Session::flash('success', 'Workout Updated');
         return redirect()->back();
@@ -228,5 +231,33 @@ class WorkoutController extends Controller
         $workout->delete();
         Session::flash('success', 'Delete Successful');
         return redirect()->route('workouts.index');
+    }
+
+    private function uploadMultipleImages($request, $workoutId)
+    {
+        $images = $request->file('workout_image');
+
+        foreach ($images as $image) {
+
+            //Get Name
+            $imageName = time() . $image->getClientOriginalName();
+
+            //Resize Image
+            $img = Image::make($image)->fit(500)->encode();
+
+
+            //Save with Filename
+            Storage::put($imageName, $img);
+
+            //Move file to location
+            Storage::move($imageName, 'public/workout_images/' . $imageName);
+
+
+            $workoutImage = new WorkoutMedia;
+            $workoutImage->workout_id = $workoutId;
+            $workoutImage->media_type = 'image';
+            $workoutImage->image_url =  $imageName;
+            $workoutImage->save();
+        }
     }
 }
