@@ -3,7 +3,7 @@
     font-family: 'Poppins', sans-serif;
 }
 .home-page-bg{
-    animation: animate 25s ease-in-out infinite;
+    animation: animate 40s ease-in-out infinite;
     background-position: right right;
     background-size: cover;
     background-repeat: no-repeat;

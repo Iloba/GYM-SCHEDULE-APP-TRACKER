@@ -59,7 +59,7 @@
                         <!--//app-card-header-->
                         <div class="app-card-body px-4">
                             <div class="intro">
-                               View all Pending Workouts
+                               View all Assigned Workouts
                             </div>
                         </div>
                         <!--//app-card-body-->

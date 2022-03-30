@@ -23,15 +23,15 @@ class ScheduleController extends Controller
         $schedules = array();
         $allSchedules = Schedule::where('user_id', auth()->user()->id)->get();
 
-    //    dd($allSchedules);
+        //    dd($allSchedules);
         // $clientName = Client::where('id', $schedule->client)->get();
         // dd($clientName);
-        
+
         foreach ($allSchedules as $schedule) {
             $time = $schedule->workout_time;
             $schedules[] = [
                 'id' => $schedule->id,
-                'title' => $time. ' '. Client::find($schedule->client_id)->name,
+                'title' => $time . ' ' . Client::find($schedule->client_id)->name,
                 'start' => $schedule->start_date,
                 'end' => $schedule->end_date,
             ];
@@ -151,6 +151,19 @@ class ScheduleController extends Controller
         return $id;
     }
 
+    public function EditOnClick($id)
+    {
+
+        $clients = Client::where('user_id', auth()->user()->id)->get();
+        $schedule = Schedule::find($id);
+        $workouts = Workout::all();
+        return view('schedules.edit', [
+            'schedule' =>  $schedule,
+            'clients' => $clients,
+            'workouts' =>  $workouts
+        ]);
+    }
+
 
     /**
      * Display the specified resource.
@@ -172,6 +185,7 @@ class ScheduleController extends Controller
     public function edit(Schedule $schedule)
     {
         //
+
     }
 
     /**
@@ -181,9 +195,32 @@ class ScheduleController extends Controller
      * @param  \App\Models\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Schedule $schedule)
+    public function update(Request $request, $id)
     {
-        //
+        // $request->validate([
+        //     'userId' => 'required',
+        //     'client' => 'required',
+        //     'workout' => 'required',
+        //     'startDate' => 'required',
+        //     'endDate' => 'required',
+        //     'workoutTime' => 'required',
+
+        // ]);
+
+        $schedule = Schedule::find($id);
+       
+        $schedule->update([
+            'user_id' => auth()->user()->id,
+            'client_id' => $request->client,
+            'workout' => $request->workout,
+            'start_date' => $request->start_date,
+            'end_date' => $request->start_date,
+            'workout_time' => $request->workout_time,
+            
+        ]);
+
+        session::flash('success', 'Schedule Update Successful');
+        return redirect()->route('schedules.index');
     }
 
     /**

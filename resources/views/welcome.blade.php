@@ -1,24 +1,5 @@
 @extends('layouts.app')
-    <style>
-        .home-page-bg{
-            animation: animate 20s ease-in-out infinite;
-        }
-
-        @keyframes animate{
-            0%, 100%{
-                background-image: url('../img/1bg.jpg');
-            }
-            25%{
-                background-image: url('../img/2bg.jpg');
-            }
-            50%{
-                background-image: url('../img/3bg.jpg');
-            }
-            75%{
-                background-image: url('../img/4bg.jpg');
-            }
-        }
-    </style>
+    
 @section('content')
 <div class="container">
     <div class="row justify-content-end">

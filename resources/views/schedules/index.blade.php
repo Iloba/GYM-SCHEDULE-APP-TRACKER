@@ -167,29 +167,37 @@
                     },
                 });
             },
+            // eventClick: function(event){
+            //    let id = event.id;
+                   
+            //   if(confirm('Dangerous Action, Do you want to continue??')){
+            //     $.ajax({
+            //         url: "{{ route('delete.on.click', '') }}" + '/' + id,
+            //         type: 'DELETE',
+            //         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            //         dataType: 'json',
+            //         // data:{startDate, endDate, },
+            //         success:function(response){
+            //             let id = response;
+            //             $('#calendar').fullCalendar('removeEvents', response);
+            //             swal("Good job!", "Schedule Deleted Successfully", "success");
+            //             location.reload();
+                    
+            //         },
+            //         error: function(error){
+                        
+            //             console.log(error);
+            //         },
+            //      });
+            //   }
+            // },
             eventClick: function(event){
                let id = event.id;
-                   
-              if(confirm('Dangerous Action, Do you want to continue??')){
-                $.ajax({
-                    url: "{{ route('delete.on.click', '') }}" + '/' + id,
-                    type: 'DELETE',
-                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                    dataType: 'json',
-                    // data:{startDate, endDate, },
-                    success:function(response){
-                        let id = response;
-                        $('#calendar').fullCalendar('removeEvents', response);
-                        swal("Good job!", "Schedule Deleted Successfully", "success");
-                        location.reload();
-                    
-                    },
-                    error: function(error){
-                        
-                        console.log(error);
-                    },
-                 });
-              }
+               
+               url = "{{ route('edit.on.click', '') }}" + '/' + id;
+                    $(location).attr('href', url);
+              
+              
             },
             // selectAllow(dropInfo, draggedEvent) {
             // // compare the start DATE and the end DATE (not the time)
