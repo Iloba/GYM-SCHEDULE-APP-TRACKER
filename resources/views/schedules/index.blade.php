@@ -167,30 +167,6 @@
                     },
                 });
             },
-            // eventClick: function(event){
-            //    let id = event.id;
-                   
-            //   if(confirm('Dangerous Action, Do you want to continue??')){
-            //     $.ajax({
-            //         url: "{{ route('delete.on.click', '') }}" + '/' + id,
-            //         type: 'DELETE',
-            //         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            //         dataType: 'json',
-            //         // data:{startDate, endDate, },
-            //         success:function(response){
-            //             let id = response;
-            //             $('#calendar').fullCalendar('removeEvents', response);
-            //             swal("Good job!", "Schedule Deleted Successfully", "success");
-            //             location.reload();
-                    
-            //         },
-            //         error: function(error){
-                        
-            //             console.log(error);
-            //         },
-            //      });
-            //   }
-            // },
             eventClick: function(event){
                let id = event.id;
                
@@ -210,6 +186,15 @@
        
        
     });
+</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript">
+    swal({
+      title: "You can now schedule workouts for your clients",
+      text: "Click on any of the dates on the calendar to add a schedule. To add a workout for multiple days click and drag. To edit a schedule, click on it",
+      icon: "success",
+      button: "Ok!",
+});
 </script>
 @endpush
 

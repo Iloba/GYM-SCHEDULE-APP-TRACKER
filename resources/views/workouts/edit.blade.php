@@ -99,6 +99,7 @@
                                     class="form-control"
                                 />
                             </div>
+                            <small class="text-danger">Note: uploading new images will delete previous ones</small>
                            @error('workout_image')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror <br />

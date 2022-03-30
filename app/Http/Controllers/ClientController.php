@@ -295,8 +295,6 @@ class ClientController extends Controller
             return back();
         }
 
-        // dd('hello');
-
         //Update Password
         $user->password = Hash::make($request->password);
         $user->save();

@@ -48,7 +48,6 @@ class WorkoutController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request->all());
         $request->validate([
             'workout_name' => 'required',
             'workout_type' => 'required',
@@ -67,7 +66,6 @@ class WorkoutController extends Controller
 
         $workout->save();
         
-        //Handle Images
         $this->uploadMultipleImages($request, $workout->id);
 
         Session::flash('success', 'Workout Created');

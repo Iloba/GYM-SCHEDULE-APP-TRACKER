@@ -23,10 +23,6 @@ class ScheduleController extends Controller
         $schedules = array();
         $allSchedules = Schedule::where('user_id', auth()->user()->id)->get();
 
-        //    dd($allSchedules);
-        // $clientName = Client::where('id', $schedule->client)->get();
-        // dd($clientName);
-
         foreach ($allSchedules as $schedule) {
             $time = $schedule->workout_time;
             $schedules[] = [
@@ -69,8 +65,7 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-
+      
         $request->validate([
 
             'client' => 'required',
@@ -79,7 +74,6 @@ class ScheduleController extends Controller
             'workout_time' => 'required',
 
         ]);
-
 
         $schedule = new Schedule;
         $schedule->user_id = auth()->user()->id;
@@ -153,7 +147,6 @@ class ScheduleController extends Controller
 
     public function EditOnClick($id)
     {
-
         $clients = Client::where('user_id', auth()->user()->id)->get();
         $schedule = Schedule::find($id);
         $workouts = Workout::all();

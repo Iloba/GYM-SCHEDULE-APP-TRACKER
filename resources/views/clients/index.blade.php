@@ -89,15 +89,15 @@ referrerpolicy="no-referrer"
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">{{ $client->name }}</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Weight: {{ $client->weight }} <br>
-                                                    Height: {{ $client->height }} <br>
-                                                    Weight Goal: {{ $client->weight_goal }} <br>
-                                                    Workout Time: {{ $client->workout_time }} <br>
+                                                    Weight(LB): {{ $client->weight }} <br>
+                                                    Height(FT): {{ $client->height }} <br>
+                                                    Weight Goal(LB): {{ $client->weight_goal }} <br>
+                                                    Workout Time(Hours Per Day): {{ $client->workout_time }} <br>
                                                     Workout Time Per Week: {{ $client->workout_time_per_week }} <br>
                                                     Workout Place: {{ $client->workout_place }} <br>
                                                     Diet Type: {{ $client->diet_type }} <br>

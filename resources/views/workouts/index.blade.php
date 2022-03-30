@@ -11,7 +11,7 @@
 <div class="app-wrapper">
     <div class="app-content pt-3 p-md-3 p-lg-4">
         <div class="container-xl">
-            <h3>All Clients</h3>
+            <h3>All Workouts</h3>
             <div class="card shadow-sm p-3">
                 <div class="row justify-content-center">
                     <div class="col-md-12">

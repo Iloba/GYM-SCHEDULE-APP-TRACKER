@@ -16,7 +16,6 @@ class ClientAuthController extends Controller
             [
                 'email' => ['required', 'email', 'exists:clients,email'],
                 'password' => ['required', 'min:8', 'max:30'],
-                //Google Recaptcha Validation
                 'g-recaptcha-response' => function ($attribute, $value, $fail) {
                     $secretKey = env('GOOGLE_RECAPTCHA_SECRET');
                     $response = $value;
@@ -24,7 +23,6 @@ class ClientAuthController extends Controller
                     $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remoteip=$userIP";
                     $response = \file_get_contents($url);
                     $response = json_decode($response);
-                    //    dd($response);
                     if (!$response->success) {
                         Session::flash('error', 'Please Check Google Recaptcha');
                         $fail($attribute . 'Google Recaptcha Failed');
