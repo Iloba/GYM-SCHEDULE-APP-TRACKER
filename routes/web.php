@@ -37,7 +37,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('store-on-click', [ScheduleController::class, 'storeOnClick'])->name('store.on.click');
     Route::patch('update-on-click/{id}', [ScheduleController::class, 'updateOnClick'])->name('update.on.click');
     Route::delete('delete-on-click/{id}', [ScheduleController::class, 'deleteOnClick'])->name('delete.on.click');
-    Route::get('edit-on-click/{id}', [ScheduleController::class, 'EditOnClick'])->name('edit.on.click');
+    Route::get('edit-schedule/{id}', [ScheduleController::class, 'EditOnClick'])->name('edit.on.click');
     Route::post('/update-instructor-Password/{id}', [ClientController::class, 'updateInstructorPassword'])->name('instructor.update.password');
 });
 

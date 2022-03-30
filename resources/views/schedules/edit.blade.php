@@ -5,10 +5,26 @@
         <div class="container-xl">
             <a href="{{ route('schedules.index') }}" class="btn btn-info btn-sm text-white mb-4 "><i
                     class="fas fa-arrow-left"></i></a>
-            <a href="{{ route('schedules.destroy', $schedule->id) }}" class="btn btn-danger float-right btn-sm text-white mb-4 "><i class="fas fa-trash"></i></a>
+                 
+            <div class=" d-flex justify-content-end ">
+                 <a onclick="
+                     event.preventDefault();
+                    if(confirm('Dangerous Action, Do you want to Continue??')){
+                            document.getElementById('{{ 'form-delete-'. $schedule->id }}').submit();
+                    }
+    
+                 
+                 "
+                 
+                 href="{{ route('schedules.destroy', $schedule->id) }}" class="btn btn-danger  btn-sm text-white "><i class="fas fa-trash"></i></a>
+                 <form action="{{ route('schedules.destroy', $schedule->id) }}" method="POST" id="{{ 'form-delete-'.$schedule->id }}">
+                    @csrf
+                    @method('DELETE')
+                </form>
+            </div>
 
 
-            <h3>Edit {{ 'client Name' }} Session</h3>
+            <h3>Edit '' Session</h3>
             <div class="card shadow-sm p-3">
                 <form action="{{ route('schedules.update', $schedule->id) }}" method="POST">
                     @csrf

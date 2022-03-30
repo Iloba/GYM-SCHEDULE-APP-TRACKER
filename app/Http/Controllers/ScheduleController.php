@@ -197,18 +197,9 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $request->validate([
-        //     'userId' => 'required',
-        //     'client' => 'required',
-        //     'workout' => 'required',
-        //     'startDate' => 'required',
-        //     'endDate' => 'required',
-        //     'workoutTime' => 'required',
-
-        // ]);
 
         $schedule = Schedule::find($id);
-       
+
         $schedule->update([
             'user_id' => auth()->user()->id,
             'client_id' => $request->client,
@@ -216,7 +207,7 @@ class ScheduleController extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->start_date,
             'workout_time' => $request->workout_time,
-            
+
         ]);
 
         session::flash('success', 'Schedule Update Successful');
@@ -229,8 +220,19 @@ class ScheduleController extends Controller
      * @param  \App\Models\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Schedule $schedule)
+    public function destroy($id)
     {
-        //
+        $schedule = Schedule::find($id);
+
+        //GUARD CLAUSE
+        if ($schedule->user_id !== auth()->user()->id) {
+            Session::flash('error', 'You are not authorized for this Action');
+            return redirect()->back();
+        }
+
+        $schedule->delete();
+
+        Session::flash('success', 'Schedule Deleted');
+        return redirect()->route('schedules.index');
     }
 }
