@@ -175,10 +175,7 @@
                                     href="#"
                                     role="button"
                                     aria-expanded="false"
-                                    ><img
-                                        src="{{ asset('img/profile-2.png') }}"
-                                        alt="user profile"
-                                /></a>
+                                    ><i class="fas fa-user"></i></a>
                                 <ul
                                     class="dropdown-menu"
                                     aria-labelledby="user-dropdown-toggle"

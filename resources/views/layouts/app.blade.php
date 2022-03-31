@@ -32,7 +32,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm p-3">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm p-3 sticky-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('img/portal-logo.png') }}" alt="">
@@ -115,14 +115,17 @@
             </div>
         </nav>
 
-        <main class="py-4 home-page-bg shadow-sm">
-            @yield('content')
+        <main class="py-5 home-page-bg shadow-sm">
+            <div class="py-5">
+                @yield('content')
+            </div>
         </main>
-        <footer class="bg-white p-1 fixed-bottom">
-            <p class="text-center">&copy;
+        <footer class="bg-white p-2  text-secondary">
+            <p class="text-center">Copyright &copy; 
                 @php
                 echo Date('Y')
                 @endphp
+                Rooah LLC. All Right Reserved. Powered by ROOAH!
             </p>
         </footer>
     </div>
