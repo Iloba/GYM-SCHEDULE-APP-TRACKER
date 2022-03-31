@@ -10,13 +10,10 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
-<body >
-        <div id="pages">
-           <div>
-                <h2 class="text-secondary">oops...Something Went Wrong</h2>  
-           </div>
-        </div>
-    </div>
+<body id="error-body">
+   
+    <h2 id="message">Hmm...something went wrong. please contact support</h2>
+   
 </body>
 
 </html>

@@ -1,13 +1,10 @@
-@extends('layouts.dashboard.index') @section('css')
-<link
-    rel="stylesheet"
-    href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"
-/>
+@extends('layouts.dashboard.index') 
+
+@section('content')
 <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
 />
-@endsection @section('content')
 <div class="app-wrapper">
     <div class="app-content pt-3 p-md-3 p-lg-4">
         <div class="container-xl">
