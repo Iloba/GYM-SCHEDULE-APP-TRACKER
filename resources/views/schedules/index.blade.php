@@ -52,7 +52,7 @@
 
                         <div class="form-group mb-3">
                             <label for="workout_time"><b>Select Time</b></label>
-                            <input type="time" class="form-control" name="workout_time" id="workout_time">
+                            <input type="time" class="form-control" onchange="onTimeChange()" name="workout_time" id="workout_time">
                             @error('workout_type')
                             <span id="workoutError" class="text-danger">{{ $message }}</span>
                             @enderror
@@ -89,6 +89,31 @@
 </div>
 
 @push('calendar-scripts')
+<script type="text/javascript">
+    var inputEle = document.getElementById('workout_time');
+    function onTimeChange() {
+      let timeSplit = inputEle.value.split(':'),
+            hours,
+            minutes,
+            meridian;
+        hours = timeSplit[0];
+        minutes = timeSplit[1];
+        if (hours > 12) {
+            meridian = 'PM';
+            hours -= 12;
+        } else if (hours < 12) {
+            meridian = 'AM';
+            if (hours == 0) {
+            hours = 12;
+            }
+        } else {
+            meridian = 'PM';
+        }
+        // alert(hours + ':' + minutes + ' ' + meridian);
+        let realTime = hours + ':' + minutes + ' ' + meridian;
+        // inputEle.value = realTime;
+    }
+ </script>
 <script type="text/javascript">
     let schedules = @json($schedules);
     // console.log(schedules);
@@ -173,8 +198,11 @@
                url = "{{ route('edit.on.click', '') }}" + '/' + id;
                     $(location).attr('href', url);
               
-              
             },
+            selectConstraint: {
+                start: $.fullCalendar.moment().subtract(1, 'days'),
+                end: $.fullCalendar.moment().startOf('month').add(1, 'month')
+            }
             // selectAllow(dropInfo, draggedEvent) {
             // // compare the start DATE and the end DATE (not the time)
             // return Ext.Date.format(dropInfo.start, 'Y-m-d') === Ext.Date.format(dropInfo.end, 'Y-m-d');
@@ -184,9 +212,9 @@
             $('#scheduleModal').modal('hide');
         })
        
-       
     });
 </script>
+
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
     swal({

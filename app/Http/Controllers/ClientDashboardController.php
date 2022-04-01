@@ -44,7 +44,7 @@ class ClientDashboardController extends Controller
             return redirect()->back();
         }
 
-        $writer = SimpleExcelWriter::streamDownload(auth('client')->user()->name, 'csv');
+        $writer = SimpleExcelWriter::streamDownload(auth('client')->user()->name.'.csv', 'csv');
         foreach ($schedules as $schedule) {
             $clientName = Client::find($schedule->client_id)->name;
             $description = Workout::find($schedule->workout)->description;

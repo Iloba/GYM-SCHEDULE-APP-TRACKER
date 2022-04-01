@@ -24,7 +24,7 @@ class StoreClientRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|max:15',
             'phone' => 'required|min:10',
             'email' => 'required|unique:clients',
             'age' => 'required',

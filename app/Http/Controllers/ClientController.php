@@ -217,9 +217,9 @@ class ClientController extends Controller
             $writer->addRow([
                 'Subject' =>  $subject . ' for ' . $clientName,
                 'Start Date' => Carbon::parse($schedule->start_date)->format('d/m/Y'),
-                'Start Time' => '10:00 AM',
+                'Start Time' => $schedule->workout_time,
                 'End Date' => carbon::parse($schedule->end_date)->format('d/m/Y'),
-                'End Time' => '10:00 AM',
+                'End Time' => $schedule->workout_time,
                 'Description' => ' Description: ' .  $description . '<br/>' . ' Link: ' . $url,
                 'All Day Event' => TRUE,
             ]);
