@@ -89,34 +89,9 @@
 </div>
 
 @push('calendar-scripts')
-<script type="text/javascript">
-    var inputEle = document.getElementById('workout_time');
-    function onTimeChange() {
-      let timeSplit = inputEle.value.split(':'),
-            hours,
-            minutes,
-            meridian;
-        hours = timeSplit[0];
-        minutes = timeSplit[1];
-        if (hours > 12) {
-            meridian = 'PM';
-            hours -= 12;
-        } else if (hours < 12) {
-            meridian = 'AM';
-            if (hours == 0) {
-            hours = 12;
-            }
-        } else {
-            meridian = 'PM';
-        }
-        // alert(hours + ':' + minutes + ' ' + meridian);
-        let realTime = hours + ':' + minutes + ' ' + meridian;
-        // inputEle.value = realTime;
-    }
- </script>
+
 <script type="text/javascript">
     let schedules = @json($schedules);
-    // console.log(schedules);
     $(document).ready(function () {
         $("#calendar").fullCalendar({
             header:{
@@ -128,6 +103,8 @@
             selectable: true,
             selectHelper: true,
             select: function(start, end, allDays){
+                let realTime;
+                var inputEle = document.getElementById('workout_time');
                 $('#scheduleModal').modal('toggle');
                 $('#saveSchedule').click(function(){
                     let userId = $('#user_id').val();
@@ -135,8 +112,28 @@
                     let workout =  $('#workout').val();
                     let startDate = moment(start).format('YYYY-MM-DD');
                     let endDate = moment(end).format('YYYY-MM-DD');
-                    let workoutTime = $('#workout_time').val();
-                    console.log(userId, client, workout, startDate, endDate, workoutTime );
+                    let workoutTime = function onTimeChange() {
+                        let timeSplit = inputEle.value.split(':'),
+                            hours,
+                            minutes,
+                            meridian;
+                            hours = timeSplit[0];
+                            minutes = timeSplit[1];
+                            if (hours > 12) {
+                                meridian = 'PM';
+                                hours -= 12;
+                            } else if (hours < 12) {
+                                meridian = 'AM';
+                                if (hours == 0) {
+                                hours = 12;
+                                }
+                            } else {
+                                meridian = 'PM';
+                            }
+                        
+                       return realTime = hours + ':' + minutes + ' ' + meridian;
+                       
+                    }
 
                     $.ajax({
                        
@@ -203,10 +200,6 @@
                 start: $.fullCalendar.moment().subtract(1, 'days'),
                 end: $.fullCalendar.moment().startOf('month').add(1, 'month')
             }
-            // selectAllow(dropInfo, draggedEvent) {
-            // // compare the start DATE and the end DATE (not the time)
-            // return Ext.Date.format(dropInfo.start, 'Y-m-d') === Ext.Date.format(dropInfo.end, 'Y-m-d');
-            // }
         });
         $('#closeModal').click(function(){
             $('#scheduleModal').modal('hide');
