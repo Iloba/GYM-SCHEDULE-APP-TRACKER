@@ -56,7 +56,7 @@
                         <!--//app-card-header-->
                         <div class="app-card-body px-4">
                             <div class="intro">
-                                Manage all your clients with Ease. Create, Edit
+                                Manage all your clients with ease. Create, Edit
                                 and Delete Clients
                             </div>
                         </div>

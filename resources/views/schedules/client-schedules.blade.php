@@ -14,7 +14,7 @@
                 <div class="row justify-content-center mx-auto">
                     <div class="col-md-12">
                         <a href="{{ route('export.client.workouts') }}" class="btn btn-info btn-sm text-white mb-4 ">
-                            <i class="fa fa-file-csv"></i> Export As Csv</a>
+                            <i class="fa fa-file-csv"></i> Export As CSV</a>
                         <div id="calendar">
 
                         </div>

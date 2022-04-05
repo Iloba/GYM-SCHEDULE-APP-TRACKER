@@ -202,13 +202,13 @@ class ClientController extends Controller
     public function exportClientData($id)
     {
         $schedules = Schedule::where('client_id', $id)->get();
-
+        // dd( $schedules);
         if (!$schedules->count() > 0) {
             Session::flash('error', 'No Schedules for this Client');
             return redirect()->back();
         }
 
-        $writer = SimpleExcelWriter::streamDownload('schedule.csv', 'csv');
+        $writer =  SimpleExcelWriter::streamDownload(Client::find($id)->name.'.csv', 'csv');
         foreach ($schedules as $schedule) {
             $clientName = Client::find($schedule->client_id)->name;
             $description = Workout::find($schedule->workout)->description;
