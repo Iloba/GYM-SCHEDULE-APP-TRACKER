@@ -103,8 +103,8 @@
             selectable: true,
             selectHelper: true,
             select: function(start, end, allDays){
-                let realTime;
-                var inputEle = document.getElementById('workout_time');
+            
+                let TimeInputElement = document.getElementById('workout_time');
                 $('#scheduleModal').modal('toggle');
                 $('#saveSchedule').click(function(){
                     let userId = $('#user_id').val();
@@ -113,7 +113,7 @@
                     let startDate = moment(start).format('YYYY-MM-DD');
                     let endDate = moment(end).format('YYYY-MM-DD');
                     let workoutTime = function onTimeChange() {
-                        let timeSplit = inputEle.value.split(':'),
+                        let timeSplit = TimeInputElement.value.split(':'),
                             hours,
                             minutes,
                             meridian;
@@ -148,17 +148,11 @@
                             swal("Good job!", "Schedule Created Successfully", "success");
                             location.reload();
                            
-                            // $('#calendar').fullCalendar('renderEvent', {
-                            //     'title': response.client, 
-                            //     'start': response.start_date, 
-                            //     'end': response.end_date, 
-                            // });
+
                         },
                         error: function(error){
-                            if(error.responseJSON.errors){
-                                $('#clientError').html(error.responseJSON.errors.client);
-                                $('#workoutError').html(error.responseJSON.errors.workout);
-                            }
+                            swal("Error!", "Something Went Wrong", "error");
+                            location.reload();
                         },
                     });
                 })
@@ -169,8 +163,6 @@
                let id = event.id;
                let startDate = moment(event.start).format('YYYY-MM-DD');
                let endDate = moment(event.end).format('YYYY-MM-DD');
-
-               
                 $.ajax({
                         
                     url: "{{ route('update.on.click', '') }}" + '/' + id,
@@ -185,14 +177,15 @@
                     },
                     error: function(error){
                         
-                        console.log(error);
+                        swal("Error!", "Something Went Wrong", "error");
+                        location.reload();
                     },
                 });
             },
             eventClick: function(event){
                let id = event.id;
                
-               url = "{{ route('edit.on.click', '') }}" + '/' + id;
+                    url = "{{ route('edit.on.click', '') }}" + '/' + id;
                     $(location).attr('href', url);
               
             },

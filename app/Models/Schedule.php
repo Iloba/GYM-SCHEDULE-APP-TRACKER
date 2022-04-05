@@ -22,7 +22,7 @@ class Schedule extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function clients(){
-        return $this->hasMany(Client::class);
+    public function client(){
+        return $this->belongsTo(Client::class);
     }
 }

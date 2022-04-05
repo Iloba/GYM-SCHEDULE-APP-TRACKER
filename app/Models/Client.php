@@ -32,6 +32,6 @@ class Client  extends Authenticatable
     }
 
     public function schedules(){
-        return $this->belongsTo(Schedule::class);
+        return $this->hasMany(Schedule::class);
     }
 }

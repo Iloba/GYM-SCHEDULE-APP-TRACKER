@@ -65,7 +65,7 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-      
+
         $request->validate([
 
             'client' => 'required',
@@ -111,6 +111,12 @@ class ScheduleController extends Controller
             'end_date' =>   $request->endDate,
             'workout_time' => $request->workoutTime
         ]);
+
+        if (!$schedule) {
+            return response()->json([
+                'error' => 'Unable to locate Event ID'
+            ], 404);
+        }
 
         return response()->json('Schedule Created');
     }
@@ -227,5 +233,38 @@ class ScheduleController extends Controller
 
         Session::flash('success', 'Schedule Deleted');
         return redirect()->route('schedules.index');
+    }
+
+    public function Ajaxupdate(Request $request, $id)
+    {
+
+        $request->validate([
+            'userId' => 'required',
+            'client' => 'required',
+            'workout' => 'required',
+            'startDate' => 'required',
+            'endDate' => 'required',
+            'workoutTime' => 'required',
+
+        ]);
+
+        $schedule = Schedule::find($id);
+        if (!$schedule) {
+            return response()->json([
+                'error' => 'Unable to locate Event ID'
+            ], 404);
+        }
+
+        $schedule->update([
+            'user_id' => auth()->user()->id,
+            'client_id' => $request->client,
+            'workout' => $request->workout,
+            'start_date' => $request->startDate,
+            'end_date' => $request->endDate,
+            'workout_time' => $request->workoutTime,
+
+        ]);
+
+        return response()->json('Schedule Created');
     }
 }
