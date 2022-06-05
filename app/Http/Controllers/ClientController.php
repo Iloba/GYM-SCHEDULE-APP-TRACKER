@@ -208,7 +208,7 @@ class ClientController extends Controller
             return redirect()->back();
         }
 
-        $writer =  SimpleExcelWriter::streamDownload(Client::find($id)->name.'.csv', 'csv');
+        $writer =  SimpleExcelWriter::streamDownload(Client::find($id)->name . '.csv', 'csv');
         foreach ($schedules as $schedule) {
             $clientName = Client::find($schedule->client_id)->name;
             $description = Workout::find($schedule->workout)->description;
